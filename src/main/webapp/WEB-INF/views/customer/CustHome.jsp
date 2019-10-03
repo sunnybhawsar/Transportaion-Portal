@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	
+	<%@page isELIgnored="false" %>
+     
+  <%
+  if(request.getSession().getAttribute("id")==null)
+  	response.sendRedirect("sessionExpired");
+  %> 
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,33 +27,92 @@ pre
 {
 	font-size: 16px;
 }
+
+.menuItems
+{
+	float:left;
+	margin-left:5%;
+}
+
+.links
+{
+	margin-top:5px;
+}
+
+.first
+{
+	margin-left:30%;
+}
+
+
+@media screen and (max-width:1250px) 
+{
+	.button
+	{
+		clear:both;
+		float:right;
+	}
+	
+	.first
+	{
+		margin-left:0%;
+	}
+}
+
+@media screen and (max-width:700px) 
+{
+	.menuItems
+	{
+		clear:both;
+		float:left;
+		margin-left:10px;
+		
+	}
+	.button
+	{
+		margin-top:10px;
+	}
+}
+
+
+.content
+{
+	padding:0px;
+}
+
+.bodyDiv
+{
+	margin-left:3%;
+}
+
+.logo
+{
+	color:black;
+	text-decoration:none;
+	transition:0.3s;
+}
+
+.logo:hover
+{
+	color:blue;
+	text-decoration:none;
+}
 </style>
 
 </head>
 <body>
 
-	<div class="mainDiv">
-	
-		<h2 style="float:left;">Welcome Customer</h2>
-		
-		<a href="index.jsp" style="float:right;">
-			<button type="button" class="btn btn-info"]>Logout</button>
-		</a>
-		
-		<br/><br/>
-		
-		<hr>
+<div class="mainDiv">
 
-		<pre>
-	<a href="index.jsp">Profile</a>
-	
-	<a href="index.jsp">Explore Deals</a>
-	
-	<a href="index.jsp">Queries</a>
-	
-	</pre>
-
+	<div class="headerDiv">		
+		<%@include file="CustHeader.jsp" %>
 	</div>
+	
+	<div class="bodyDiv">
+		<p> Welcome, ${user} !</p>
+	</div>
+
+</div>
 
 </body>
 </html>

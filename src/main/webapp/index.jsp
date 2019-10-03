@@ -10,6 +10,18 @@
 <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- 
+<script>
+/* break back button */                                                                        
+window.onload=function(){                                                                      
+  var i=0; var previous_hash = window.location.hash;                                           
+  var x = setInterval(function(){                                                              
+    i++; window.location.hash = "/noop/" + i;                                                  
+    if (i==10){clearInterval(x);                                                               
+      window.location.hash = previous_hash;}                                                   
+  },10);
+}
+</script> -->
 
 <style type="text/css">
 
@@ -62,8 +74,10 @@
 </style>
 
 </head>
-<body>
-	<div class="mainDiv">
+<!-- <body onload="noBack();" onpageshow="if (event.persisted) noBack();" onunload=""> -->	
+ 
+ <body>
+ <div class="mainDiv">
 
 		<div class="formDiv card">
 

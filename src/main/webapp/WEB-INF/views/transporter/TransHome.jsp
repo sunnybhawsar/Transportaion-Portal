@@ -1,5 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
+  <%@page isELIgnored="false" %>
+     
+  <%
+  if(request.getSession().getAttribute("id")==null)
+  	response.sendRedirect("sessionExpired");
+  %> 
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +18,86 @@
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-
-.mainDiv
+.mainDiv 
 {
-	padding:4%;
+	padding: 4%;
 }
 
-pre
+pre 
 {
-	font-size:16px;
+	font-size: 16px;
 }
 
+.menuItems
+{
+	float:left;
+	margin-left:35px;
+}
+
+.links
+{
+	margin-top:5px;
+}
+
+.first
+{
+	margin-left:2%;
+}
+
+
+@media screen and (max-width:1300px) 
+{
+	.button
+	{
+		clear:both;
+		float:right;
+	}
+	
+	.first
+	{
+		margin-left:0%;
+	}
+}
+
+@media screen and (max-width:700px) 
+{
+	.menuItems
+	{
+		clear:both;
+		float:left;
+		margin-left:10px;
+		
+	}
+	
+	.button
+	{
+		margin-top: 15px;
+	}
+}
+
+
+.content
+{
+	padding:0px;
+}
+
+.bodyDiv
+{
+	padding-left:3%;
+}
+
+.logo
+{
+	color:black;
+	text-decoration:none;
+	transition:0.3s;
+}
+
+.logo:hover
+{
+	color:blue;
+	text-decoration:none;
+}
 </style>
 
 </head>
@@ -29,25 +105,15 @@ pre
 
 <div class="mainDiv">
 	
-		<h2 style="float:left;">Welcome Transporter</h2>
-		
-		<a href="index.jsp" style="float:right;">
-			<button type="button" class="btn btn-info"]>Logout</button>
-		</a>
-		
-		<br/><br/>
-		
-	<hr>
+	<div class="headerDiv">
+	<%@include file="TransHeader.jsp" %>
+	</div>
 	
-	<pre>
-	<a href="index.jsp">Profile</a>
+	<br/>
 	
-	<a href="index.jsp">My Vehicles</a>
-	
-	<a href="index.jsp">My Deals</a>
-	
-	<a href="index.jsp">Customer Queries</a>
-	</pre>
+	<div class="bodyDiv">
+	<p>Welcome, ${user} !</p>
+	</div>
 	
 </div>
 
