@@ -1,33 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    
-    <%@page isELIgnored="false" %>
-      
+	
+	<%@page isELIgnored="false" %>
+     
   <%
   if(request.getSession().getAttribute("id")==null)
   	response.sendRedirect("sessionExpired");
-  %>  
-    
+  %> 
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin | Home</title>
+<title>Customer | Queries</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 <script	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<!-- <script>
-/* break back button */                                                                        
-window.onload=function(){                                                                      
-  var i=0; var previous_hash = window.location.hash;                                           
-  var x = setInterval(function(){                                                              
-    i++; window.location.hash = "/noop/" + i;                                                  
-    if (i==10){clearInterval(x);                                                               
-      window.location.hash = previous_hash;}                                                   
-  },10);
-}
-</script> -->
 
 <style type="text/css">
 .mainDiv 
@@ -43,7 +31,7 @@ pre
 .menuItems
 {
 	float:left;
-	margin-left:20px;
+	margin-left:5%;
 }
 
 .links
@@ -53,11 +41,11 @@ pre
 
 .first
 {
-	margin-left:9%;
+	margin-left:30%;
 }
 
 
-@media screen and (max-width:1300px) 
+@media screen and (max-width:1250px) 
 {
 	.button
 	{
@@ -80,12 +68,21 @@ pre
 		margin-left:10px;
 		
 	}
+	.button
+	{
+		margin-top:10px;
+	}
 }
 
 
 .content
 {
 	padding:0px;
+}
+
+.bodyDiv
+{
+	margin-left:3%;
 }
 
 .logo
@@ -100,18 +97,32 @@ pre
 	color:blue;
 	text-decoration:none;
 }
+
+.bodyDiv
+{
+	margin-left:5%;
+}
+
+.bodyDiv h3
+{
+	color:green;'
+}
 </style>
 
 </head>
 <body>
 
-	<div class="mainDiv">
-	
-	<%@include file="AdmHeader.jsp" %>
-		
-		<p>Hello, ${user}  &nbsp;<b>${id}</b></p> 
+<div class="mainDiv">
 
+	<div class="headerDiv">		
+		<%@include file="CustHeader.jsp" %>
 	</div>
+	
+	<div class="bodyDiv">
+		<h3>Queries</h3>
+	</div>
+
+</div>
 
 </body>
 </html>

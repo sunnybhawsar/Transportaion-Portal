@@ -12,13 +12,13 @@
 		<div class="col-lg-6">
 		
 		
-		<a href="index.jsp" class="menuItems links first">Profile</a>
+		<a href="transProfile" class="menuItems links first">Profile</a>
 		
-		<a href="index.jsp" class="menuItems links">My Vehicles</a>
+		<a href="transVehicles" class="menuItems links">My Vehicles</a>
 		
-		<a href="index.jsp" class="menuItems links">My Deals</a>
+		<a href="transDeals" class="menuItems links">My Deals</a>
 		
-		<a href="index.jsp" class="menuItems links">Customer Queries</a>
+		<a href="transQueries" class="menuItems links">Customer Queries</a>
 		
 			<a href="logout" class="menuItems button">
 				<button type="button" class="btn btn-info">Logout</button>

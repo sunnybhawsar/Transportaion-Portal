@@ -12,11 +12,11 @@
 		<div class="col-lg-6">
 		
 		
-		<a href="index.jsp" class="menuItems links first">Profile</a>
+		<a href="custProfile" class="menuItems links first">Profile</a>
 		
-		<a href="index.jsp" class="menuItems links">Explore Deals</a>
+		<a href="custExploreDeals" class="menuItems links">Explore Deals</a>
 		
-		<a href="index.jsp" class="menuItems links">Queries</a>
+		<a href="custQueries" class="menuItems links">Queries</a>
 		
 			<a href="logout" class="menuItems button">
 				<button type="button" class="btn btn-info">Logout</button>

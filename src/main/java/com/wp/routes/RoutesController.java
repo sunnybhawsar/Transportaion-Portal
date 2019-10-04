@@ -60,6 +60,36 @@ public class RoutesController {
 		return "admin/AdmHome";
 	}
 	
+	@RequestMapping("/admin/admTransporters")
+	
+	public String admTransporters()
+	{
+		return "admin/AdmTransporters";
+	}
+	
+	@RequestMapping("/admin/admVehicles")
+	
+	public String admVehicles()
+	{
+		return "admin/AdmVehicles";
+	}
+	
+	@RequestMapping("/admin/admCustomers")
+	
+	public String admCustomers()
+	{
+		return "admin/AdmCustomers";
+	}
+	
+	
+	@RequestMapping("/admin/admDeals")
+	
+	public String admDeals()
+	{
+		return "admin/AdmDeals";
+	}
+	
+	
 	
 // Customer Routes
 	
@@ -70,13 +100,57 @@ public class RoutesController {
 		return "customer/CustHome";
 	}
 	
+	@RequestMapping("/customer/custProfile")
+	
+	public String custProfile()
+	{
+		return "customer/CustProfile";
+	}
+	
+	@RequestMapping("/customer/custExploreDeals")
+	
+	public String custExploreDeals()
+	{
+		return "customer/CustExploreDeals";
+	}
 
+	@RequestMapping("/customer/custQueries")
+	
+	public String custQueries()
+	{
+		return "customer/CustQueries";
+	}
+	
+	
 // Transporter Routes
 	
 		@RequestMapping("/transporter/TransHome")
-		
 		public String transHome()
 		{
 			return "transporter/TransHome";
+		}
+		
+		@RequestMapping("/transporter/transProfile")
+		public String transProfile()
+		{
+			return "transporter/TransProfile";
+		}
+		
+		@RequestMapping("/transporter/transVehicles")
+		public String transVehicles()
+		{
+			return "transporter/TransVehicles";
+		}
+
+		@RequestMapping("/transporter/transDeals")
+		public String transDeals()
+		{
+			return "transporter/TransDeals";
+		}
+		
+		@RequestMapping("/transporter/transQueries")
+		public String transQueries()
+		{
+			return "transporter/TransQueries";
 		}
 }

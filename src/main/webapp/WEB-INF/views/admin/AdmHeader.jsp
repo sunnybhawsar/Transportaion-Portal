@@ -12,13 +12,13 @@
 		<div class="col-lg-6">
 		
 		
-		<a href="index.jsp" class="menuItems links first">Transporters</a>
+		<a href="admTransporters" class="menuItems links first">Transporters</a>
 		
-		<a href="index.jsp" class="menuItems links">Vehicles</a>
+		<a href="admVehicles" class="menuItems links">Vehicles</a>
 		
-		<a href="index.jsp" class="menuItems links">Customers</a>
+		<a href="admCustomers" class="menuItems links">Customers</a>
 		
-		<a href="index.jsp" class="menuItems links">Explore Deals</a>
+		<a href="admDeals" class="menuItems links">Explore Deals</a>
 		
 			<a href="logout" class="menuItems button">
 				<button type="button" class="btn btn-info">Logout</button>
