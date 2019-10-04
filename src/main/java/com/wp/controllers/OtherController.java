@@ -55,7 +55,7 @@ public class OtherController {
 			
 			else
 			{
-				if(!loginDetails.isApproval())
+				if(loginDetails.isApproval())
 				{
 					ModelAndView modelAndView = new ModelAndView("redirect:/transporter/TransHome");
 					//modelAndView.addObject("id", loginDetails.getLoginId());

@@ -173,10 +173,17 @@ table
 				
 			</table>
             	
-              <div style="align-content:center; text-align:center; align-items:center;">
-              	<a href="approveTransporter?id=${transporter.getTransporterId()}">
+              <div style="margin-left:37%;">
+              	<a href="approveTransporter?id=${transporter.getTransporterId()}" style="float:left;">
             	<button type="button" class="btn btn-warning" >Approve Request </button>
             	</a>
+            	
+            	&nbsp;
+            	
+            	<a href="declineTransporter?id=${transporter.getTransporterId()}" style="float:left; margin-left:20px;">
+            	<button type="button" class="btn btn-danger" >Decline </button>
+            	</a>
+            	
 			  </div>
 			  
               </div>

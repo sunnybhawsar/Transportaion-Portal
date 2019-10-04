@@ -1,9 +1,9 @@
 package com.wp.dao;
 
-import com.wp.models.Transporter;
+import com.wp.models.Login;
 
 public interface AdminDAO {
 	
-	public Transporter approveTransporter(Transporter transporter);
+	public String approveTransporter(Login login);
 
 }

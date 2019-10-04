@@ -55,7 +55,9 @@ public class OtherServicesImpl implements OtherServices {
 	@Override
 	public Login getLoginDetails(int id) {
 		
-		return null;
+		Login login = otherDAO.getLoginDetails(id);
+		
+		return login;
 	}
 
 	@Override

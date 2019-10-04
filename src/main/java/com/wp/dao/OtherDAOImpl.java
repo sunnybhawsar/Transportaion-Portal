@@ -43,8 +43,13 @@ public class OtherDAOImpl implements OtherDAO {
 	@Override
 	public Login getLoginDetails(int id) {
 		
+		session = sessionFactory.openSession();
 		
-		return null;
+		Login login = session.get(Login.class, id);
+		
+		session.close();
+		
+		return login;
 	}
 
 

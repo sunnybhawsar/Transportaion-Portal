@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wp.models.Login;
 import com.wp.models.Transporter;
+import com.wp.services.AdminServices;
+import com.wp.services.OtherServices;
 import com.wp.services.TransporterServices;
 
 @Controller
@@ -16,6 +19,12 @@ public class AdminController {
 	
 	@Autowired
 	private TransporterServices transporterServices;
+	
+	@Autowired
+	private OtherServices otherServices;
+	
+	@Autowired
+	private AdminServices adminServices;
 	
 	public List <Transporter> transporters;
 	
@@ -76,11 +85,13 @@ public class AdminController {
 		public ModelAndView admApproveTransporter(@RequestParam("id") int id)
 		{
 		
-			transporter = transporterServices.getTransporter(id);
+			Login login = otherServices.getLoginDetails(id);
 			
+			System.out.println(login);
 			
+			String response = adminServices.approveTransporter(login);
 			
-			System.out.println(id);
+			System.out.println(response);
 			
 			transporters = transporterServices.getAllTransporters();
 			
@@ -89,6 +100,30 @@ public class AdminController {
 			ModelAndView modelAndView = new ModelAndView("admin/AdmTransporters");
 			modelAndView.addObject("transporters",transporters);
 			return modelAndView;
+			
+		}
+		
+		
+		@RequestMapping("/admin/declineTransporter")
+		public ModelAndView admDeclineTransporter(@RequestParam("id") int id)
+		{
+		
+			Login login = otherServices.getLoginDetails(id);
+			
+			System.out.println(login);
+			
+			String response = adminServices.declineTransporter(login);
+			
+			System.out.println(response);
+			
+			transporters = transporterServices.getAllTransporters();
+			
+			System.out.println(transporters);
+			
+			ModelAndView modelAndView = new ModelAndView("admin/AdmTransporters");
+			modelAndView.addObject("transporters",transporters);
+			return modelAndView;
+			
 		}
 
 }
