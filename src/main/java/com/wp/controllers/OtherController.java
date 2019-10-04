@@ -13,7 +13,7 @@ import com.wp.models.Login;
 import com.wp.services.OtherServices;
 
 @Controller
-//@SessionAttributes(names= {"id"})
+//@SessionAttributes(names="id")
 public class OtherController {
 	
 	@Autowired

@@ -60,36 +60,6 @@ public class RoutesController {
 		return "admin/AdmHome";
 	}
 	
-	@RequestMapping("/admin/admTransporters")
-	
-	public String admTransporters()
-	{
-		return "admin/AdmTransporters";
-	}
-	
-	@RequestMapping("/admin/admVehicles")
-	
-	public String admVehicles()
-	{
-		return "admin/AdmVehicles";
-	}
-	
-	@RequestMapping("/admin/admCustomers")
-	
-	public String admCustomers()
-	{
-		return "admin/AdmCustomers";
-	}
-	
-	
-	@RequestMapping("/admin/admDeals")
-	
-	public String admDeals()
-	{
-		return "admin/AdmDeals";
-	}
-	
-	
 	
 // Customer Routes
 	

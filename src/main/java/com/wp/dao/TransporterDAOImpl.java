@@ -1,5 +1,8 @@
 package com.wp.dao;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -34,13 +37,36 @@ public class TransporterDAOImpl implements TransporterDAO {
 	@Override
 	public Transporter getTransporter(int id) {
 		
-		return null;
+		session = sessionFactory.openSession();
+		
+		Transporter transporter = session.get(Transporter.class, id);
+		
+		return transporter;
 	}
 
+	
+	@Override
+	public List<Transporter> getAllTransporters() {
+		
+		session = sessionFactory.openSession();
+		
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(Transporter.class);
+		
+		@SuppressWarnings("unchecked")
+		List <Transporter> transporters = criteria.list();
+		
+		session.close();
+		
+		return transporters;
+	}
+	
 	@Override
 	public String updateTransporter(Transporter transporter) {
 		
 		return null;
 	}
+
+	
 
 }

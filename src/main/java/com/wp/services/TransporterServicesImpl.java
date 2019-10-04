@@ -2,6 +2,7 @@ package com.wp.services;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,7 +81,17 @@ public class TransporterServicesImpl implements TransporterServices {
 	@Override
 	public Transporter getTransporter(int id) {
 		
-		return null;
+		Transporter transporter = transporterDAO.getTransporter(id);
+		return transporter;
+	}
+	
+	
+// Get all transporter
+
+	@Override
+	public List<Transporter> getAllTransporters() {
+		List <Transporter> transporters = transporterDAO.getAllTransporters();
+		return transporters;
 	}
 	
 	
@@ -91,5 +102,7 @@ public class TransporterServicesImpl implements TransporterServices {
 		
 		return null;
 	}
+
+
 
 }
