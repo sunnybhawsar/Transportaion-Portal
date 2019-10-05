@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
+      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
   <%@page isELIgnored="false" %>
       
   <%
@@ -96,7 +98,7 @@ pre
 
 .bodyDiv h3
 {
-	color:green;'
+	color:green;
 }
 </style>
 
@@ -113,7 +115,50 @@ pre
 	
 	<div class="bodyDiv">
 	
-		<h3>Vehicles List</h3>
+		<h3 align="center">Vehicles List</h3>
+
+<br/>
+
+		<div class="table-responsive-md">
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Registration No</th>
+              <th>Vehicle Type</th>
+              <th>Capacity</th>
+              <th>Transporter</th>
+              <th>Approval</th>
+              <th>Action</th>
+     
+            </tr>
+         
+         <c:forEach var="vehicle" items="${vehicles}">
+       
+      		 <tr>
+              
+               <td><p></p></td>
+              <td><p>${vehicle.registrationNumber}</p></td>
+              <td><p>${vehicle.vehicleType}</p></td>
+              <td><p>${vehicle.capacity}</p></td>
+              <td><p>${vehicle.transporter.name}</p></td>
+              <td><p>${vehicle.approval}</p></td>
+              
+              <td>
+               
+              <a href="fetchVehicle?regNo=${vehicle.registrationNumber}"> 
+              <button type="button"  class="btn btn-info">      
+                More Details
+              </button>
+              </a>
+                &nbsp;
+              <button type="button" class="btn btn-danger">Delete</button>
+              </td>
+          </tr>
+          
+          </c:forEach>
+          
+          </table>
+        </div>
 		
 	</div>
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-	
+	  
+	  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 	<%@page isELIgnored="false" %>
      
   <%
@@ -106,7 +108,7 @@ pre
 
 .bodyDiv h3
 {
-	color:green;'
+	color:green;
 }
 </style>
 
@@ -120,7 +122,56 @@ pre
 	</div>
 	
 	<div class="bodyDiv">
-		<h3>Vehicles</h3>
+	
+		<a href="addVehicle">
+		<button type="button" class="btn btn-success">Add Vehicle</button>
+		</a>
+		
+		<br>
+		
+		<h3 align="center">My Vehicles</h3>
+
+<br/>
+
+		<div class="table-responsive-md">
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Registration No</th>
+              <th>Vehicle Type</th>
+              <th>Capacity</th>
+              <th>Approval</th>
+              <th>Action</th>
+     
+            </tr>
+         
+         <c:forEach var="vehicle" items="${vehicles}">
+       
+      		 <tr>
+              
+               <td><p></p></td>
+              <td><p>${vehicle.getRegistrationNumber()}</p></td>
+              <td><p>${vehicle.getVehicleType()}</p></td>
+              <td><p>${vehicle.getCapacity()}</p></td>
+              <td><p>${vehicle.isApproval()}</p></td>
+              
+              <td>
+               
+              <a href="fetchVehicle?regNo=${vehicle.getRegistrationNumber()}"> 
+              <button type="button"  class="btn btn-info">      
+                More Details
+              </button>
+              </a>
+                &nbsp;
+              <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#viewApplicationModalLong">Delete</button>
+              </td>
+          </tr>
+          
+          </c:forEach>
+          
+          </table>
+        </div>
+		
 	</div>
 
 </div>

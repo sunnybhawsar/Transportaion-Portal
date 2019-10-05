@@ -1,10 +1,13 @@
 package com.wp.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wp.dao.AdminDAO;
 import com.wp.models.Login;
+import com.wp.models.Vehicle;
 
 @Service
 public class AdminServicesImpl implements AdminServices {
@@ -30,6 +33,15 @@ public class AdminServicesImpl implements AdminServices {
 		String response = adminDAO.approveTransporter(login);
 		
 		return response;
+	}
+
+	
+	@Override
+	public List<Vehicle> getAllVehicles() {
+		
+		List <Vehicle> vehicles = adminDAO.getAllVehicles();
+		
+		return vehicles;
 	}
 
 }

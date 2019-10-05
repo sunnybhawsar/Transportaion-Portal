@@ -1,15 +1,20 @@
 package com.wp.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wp.models.Login;
 import com.wp.models.Transporter;
+import com.wp.models.Vehicle;
 import com.wp.services.OtherServices;
 import com.wp.services.TransporterServices;
 
@@ -22,6 +27,82 @@ public class TransporterController {
 	@Autowired
 	private TransporterServices transporterServices;
 	
+	public List <Vehicle> vehicles;
+	
+	
+// Routes
+	
+	@RequestMapping("/transporter/transProfile")
+	public String transProfile()
+	{
+		return "transporter/TransProfile";
+	}
+	
+	@RequestMapping("/transporter/transVehicles")
+	public ModelAndView transVehicles(@SessionAttribute("id") int loginId)
+	{
+		
+		System.out.println("loginId: "+loginId);
+		
+		int transId = transporterServices.getTransporterId(loginId);
+		
+		System.out.println("tranId:"+transId);
+
+		
+		 //Transporter transporter=transporterServices.getTransporter(transId);
+		 // System.out.println(transporter);
+		  
+		/*
+		 * List <Vehicle> vehicles = transporter.getVehicles();
+		 * 
+		 * System.out.println(vehicles);
+		 */
+		 
+		  
+		  vehicles  = transporterServices.getAllVehicles(transId);
+		  System.out.println(vehicles);
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransVehicles");
+		modelAndView.addObject("vehicles",vehicles);
+		return modelAndView;
+	}
+
+	@RequestMapping("/transporter/transDeals")
+	public String transDeals()
+	{
+		return "transporter/TransDeals";
+	}
+	
+	@RequestMapping("/transporter/transQueries")
+	public String transQueries()
+	{
+		return "transporter/TransQueries";
+	}
+	
+	@RequestMapping("/transporter/addVehicle")
+	public ModelAndView addVehicle(@ModelAttribute("vehicle") Vehicle vehicle)
+	{
+		List <String> vehicleTypes = new ArrayList<String>();
+		vehicleTypes.add("Select vehicle type");
+		vehicleTypes.add("Truck");
+		vehicleTypes.add("Trolley");
+		vehicleTypes.add("Pickup");
+		
+		List <String> brands = new ArrayList<String>();
+		brands.add("Brand");
+		brands.add("TATA");
+		brands.add("Mahindra");
+		brands.add("Chevrolet");
+		brands.add("Suzuki");
+		
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransAddVehicle");
+		modelAndView.addObject("vehicleTypes",vehicleTypes);
+		modelAndView.addObject("brands",brands);
+		return modelAndView;
+	}
+
+// Actions
 	
 	// Add new transporter
 	
@@ -50,6 +131,73 @@ public class TransporterController {
 		ModelAndView modelAndView = new ModelAndView("other/Registered");
 		
 		return modelAndView;
+	}
+	
+	
+//  Add new Vehicle
+	
+	@RequestMapping("transporter/saveVehicle")
+	public ModelAndView saveVehicle(
+			@ModelAttribute("vehicle") Vehicle vehicle,
+			@RequestParam("vInsurance") MultipartFile vInsurance,
+			@RequestParam("vFitness") MultipartFile vFitness,
+			@SessionAttribute("id") int loginId
+			)
+	{
+		
+		int transId = transporterServices.getTransporterId(loginId);
+		
+		String response = transporterServices.saveVehicle(vehicle, vInsurance, vFitness, transId);
+		
+		String status;
+		
+		if(response.equals("Success"))
+		{
+			status = "Vehicle added successfully!";
+		}
+		else
+		{
+			status = "Something went wrong, Try again later!";
+		}
+		
+		System.out.println("savevehicleController: Status - "+response);
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransAddVehicle");
+		
+		modelAndView.addObject("status",status);
+		
+		return modelAndView;
+	}
+	
+	
+// fetch a vehicle details
+	
+	@RequestMapping("/transporter/fetchVehicle")
+	public ModelAndView admFetchTransporter(@RequestParam("regNo") String regNo)
+	{
+		
+		Vehicle vehicle=null;
+		
+		if(vehicles!=null)
+		{
+		for(Vehicle v : vehicles)
+		{
+			if(v.getRegistrationNumber().equals(regNo))
+			{
+				vehicle = v;
+			}
+		}
+		}
+		
+		//System.out.println(vehicle);
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransVehicleDetails");
+
+		modelAndView.addObject("vehicle",vehicle);
+		return modelAndView;
+	
+	
+	
 	}
 	
 }

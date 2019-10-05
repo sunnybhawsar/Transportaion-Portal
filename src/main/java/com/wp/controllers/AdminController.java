@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wp.models.Login;
 import com.wp.models.Transporter;
+import com.wp.models.Vehicle;
 import com.wp.services.AdminServices;
 import com.wp.services.OtherServices;
 import com.wp.services.TransporterServices;
@@ -27,6 +28,7 @@ public class AdminController {
 	private AdminServices adminServices;
 	
 	public List <Transporter> transporters;
+	public List <Vehicle> vehicles;
 	
 	public Transporter transporter;
 	
@@ -37,7 +39,7 @@ public class AdminController {
 		{
 			transporters = transporterServices.getAllTransporters();
 			
-			System.out.println(transporters);
+		//	System.out.println(transporters);
 			
 			ModelAndView modelAndView = new ModelAndView("admin/AdmTransporters");
 			modelAndView.addObject("transporters",transporters);
@@ -45,10 +47,17 @@ public class AdminController {
 		}
 		
 		@RequestMapping("/admin/admVehicles")
-		public String admVehicles()
+		public ModelAndView admVehicles()
 		{
-			return "admin/AdmVehicles";
+			vehicles = adminServices.getAllVehicles();
+			
+			ModelAndView modelAndView = new ModelAndView("admin/AdmVehicles");
+			
+			modelAndView.addObject("vehicles", vehicles);
+			
+			return modelAndView;
 		}
+		
 		
 		@RequestMapping("/admin/admCustomers")
 		public String admCustomers()
@@ -65,13 +74,15 @@ public class AdminController {
 		
 
 // Actions
+	
+		// Fetch Transporter by id
 		
 		@RequestMapping("/admin/fetchTransporter")
 		public ModelAndView admFetchTransporter(@RequestParam("id") int id)
 		{
 			transporter = transporterServices.getTransporter(id);
 			
-			System.out.println(transporter);
+			//System.out.println(transporter);
 			
 			ModelAndView modelAndView = new ModelAndView("admin/AdmTransporterDetails");
 	
@@ -80,22 +91,26 @@ public class AdminController {
 		}
 		
 		
+		// Approve Transporter
 		
 		@RequestMapping("/admin/approveTransporter")
-		public ModelAndView admApproveTransporter(@RequestParam("id") int id)
+		public ModelAndView admApproveTransporter(@RequestParam("id") int transId)
 		{
-		
-			Login login = otherServices.getLoginDetails(id);
+			Transporter transporter = transporterServices.getTransporter(transId);
 			
-			System.out.println(login);
+			int loginId = transporter.getLogin().getLoginId();
+		
+			Login login = otherServices.getLoginDetails(loginId);
+			
+			//System.out.println(login);
 			
 			String response = adminServices.approveTransporter(login);
 			
-			System.out.println(response);
+			//System.out.println(response);
 			
 			transporters = transporterServices.getAllTransporters();
 			
-			System.out.println(transporters);
+			//System.out.println(transporters);
 			
 			ModelAndView modelAndView = new ModelAndView("admin/AdmTransporters");
 			modelAndView.addObject("transporters",transporters);
@@ -104,13 +119,19 @@ public class AdminController {
 		}
 		
 		
-		@RequestMapping("/admin/declineTransporter")
-		public ModelAndView admDeclineTransporter(@RequestParam("id") int id)
-		{
+		// Decline Transporter Request
 		
-			Login login = otherServices.getLoginDetails(id);
+		@RequestMapping("/admin/declineTransporter")
+		public ModelAndView admDeclineTransporter(@RequestParam("id") int transId)
+		{
+			Transporter transporter = transporterServices.getTransporter(transId);
 			
-			System.out.println(login);
+			int loginId = transporter.getLogin().getLoginId();
+		
+			Login login = otherServices.getLoginDetails(loginId);
+		
+			
+			//System.out.println(login);
 			
 			String response = adminServices.declineTransporter(login);
 			
@@ -118,12 +139,39 @@ public class AdminController {
 			
 			transporters = transporterServices.getAllTransporters();
 			
-			System.out.println(transporters);
+			//System.out.println(transporters);
 			
 			ModelAndView modelAndView = new ModelAndView("admin/AdmTransporters");
 			modelAndView.addObject("transporters",transporters);
 			return modelAndView;
 			
+		}
+		
+		
+		// Fetch Vehicle by regno
+		
+		@RequestMapping("/admin/fetchVehicle")
+		public ModelAndView admFetchVehicle(@RequestParam("regNo") String regNo)
+		{
+			Vehicle vehicle=null;
+			
+			if(vehicles!=null)
+			{
+			for(Vehicle v : vehicles)
+			{
+				if(v.getRegistrationNumber().equals(regNo))
+				{
+					vehicle = v;
+				}
+			}
+			}
+			
+			//System.out.println(transporter);
+			
+			ModelAndView modelAndView = new ModelAndView("admin/AdmVehicleDetails");
+	
+			modelAndView.addObject("vehicle",vehicle);
+			return modelAndView;
 		}
 
 }

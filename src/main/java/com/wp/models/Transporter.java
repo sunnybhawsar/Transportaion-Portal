@@ -1,8 +1,14 @@
 package com.wp.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -26,6 +32,9 @@ public class Transporter {
 	
 	@OneToOne
 	private Login login;
+	
+	@OneToMany(mappedBy="transporter", cascade = CascadeType.ALL)
+	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
 
 	
 	// Getters and Setters
@@ -109,10 +118,35 @@ public class Transporter {
 	public void setLogin(Login login) {
 		this.login = login;
 	}
+	
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}	
+	
 
 	
 	// Constructors
 	
+	public Transporter(int transporterId, String name, String email, String mobile, String address, String state,
+			String city, String image, String idProof, Login login, List<Vehicle> vehicles) {
+		super();
+		this.transporterId = transporterId;
+		this.name = name;
+		this.email = email;
+		this.mobile = mobile;
+		this.address = address;
+		this.state = state;
+		this.city = city;
+		this.image = image;
+		this.idProof = idProof;
+		this.login = login;
+		this.vehicles = vehicles;
+	}
+
 	public Transporter(int transporterId, String name, String email, String mobile, String address, String state,
 			String city, String image, String idProof, Login login) {
 		super();
@@ -127,7 +161,8 @@ public class Transporter {
 		this.idProof = idProof;
 		this.login = login;
 	}
-
+	
+	
 	public Transporter(int transporterId) {
 		super();
 		this.transporterId = transporterId;
@@ -149,9 +184,8 @@ public class Transporter {
 	public String toString() {
 		return "Transporter [transporterId=" + transporterId + ", name=" + name + ", email=" + email + ", mobile="
 				+ mobile + ", address=" + address + ", state=" + state + ", city=" + city + ", image=" + image
-				+ ", idProof=" + idProof + ", login=" + login + "]";
+				+ ", idProof=" + idProof + ", login=" + login + " ]";
 	}
-	
-	
-	
+
+
 }

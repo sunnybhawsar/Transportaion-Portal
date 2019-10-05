@@ -3,6 +3,7 @@ package com.wp.dao;
 import java.util.List;
 
 import com.wp.models.Transporter;
+import com.wp.models.Vehicle;
 
 public interface TransporterDAO {
 	
@@ -10,8 +11,14 @@ public interface TransporterDAO {
 	
 	public Transporter getTransporter(int id);
 	
+	public int getTransporterId(int loginId);
+	
 	public List<Transporter> getAllTransporters();
 	
 	public String updateTransporter(Transporter transporter);
+	
+	public String saveVehicle(Vehicle vehicle);
+	
+	public List <Vehicle> getAllVehicles (int transId);
 
 }

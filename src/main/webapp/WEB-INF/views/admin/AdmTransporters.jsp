@@ -142,8 +142,6 @@ pre
 		<h3>TRANSPORTERS LIST</h3>
 		<br>
 		
-		<p>${transporter}</p>
-		
 		<div class="table-responsive-md">
           <table class="table">
             <tr>

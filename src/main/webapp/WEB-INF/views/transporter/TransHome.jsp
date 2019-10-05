@@ -113,6 +113,7 @@ pre
 	
 	<div class="bodyDiv">
 	<p>Welcome, ${user} !</p>
+	<p>Session login id: ${id} </p>
 	</div>
 	
 </div>

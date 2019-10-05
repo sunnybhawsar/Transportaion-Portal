@@ -100,27 +100,4 @@ public class RoutesController {
 			return "transporter/TransHome";
 		}
 		
-		@RequestMapping("/transporter/transProfile")
-		public String transProfile()
-		{
-			return "transporter/TransProfile";
-		}
-		
-		@RequestMapping("/transporter/transVehicles")
-		public String transVehicles()
-		{
-			return "transporter/TransVehicles";
-		}
-
-		@RequestMapping("/transporter/transDeals")
-		public String transDeals()
-		{
-			return "transporter/TransDeals";
-		}
-		
-		@RequestMapping("/transporter/transQueries")
-		public String transQueries()
-		{
-			return "transporter/TransQueries";
-		}
 }
