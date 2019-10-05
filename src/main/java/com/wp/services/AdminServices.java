@@ -11,6 +11,10 @@ public interface AdminServices {
 	
 	public String declineTransporter(Login login);
 	
+	public String approveVehicle(Vehicle vehicle);
+	
+	public String declineVehicle(Vehicle vehicle);
+	
 	public List<Vehicle> getAllVehicles();
 
 }

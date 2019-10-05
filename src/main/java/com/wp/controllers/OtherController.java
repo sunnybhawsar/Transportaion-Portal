@@ -26,7 +26,7 @@ public class OtherController {
 	{
 		Login loginDetails = otherServices.getLoginDetails(login);
 		
-		System.out.println("controller: "+loginDetails);
+		//System.out.println("controller: "+loginDetails);
 		
 		if(loginDetails==null)
 		{

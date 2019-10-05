@@ -124,7 +124,7 @@ pre
 	<div class="bodyDiv">
 	
 		<a href="addVehicle">
-		<button type="button" class="btn btn-success">Add Vehicle</button>
+		<button type="button" class="btn btn-success">Register Vehicle</button>
 		</a>
 		
 		<br>

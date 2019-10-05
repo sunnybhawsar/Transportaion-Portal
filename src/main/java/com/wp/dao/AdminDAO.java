@@ -9,6 +9,8 @@ public interface AdminDAO {
 	
 	public String approveTransporter(Login login);
 	
+	public String approveVehicle(Vehicle vehicle);
+	
 	public List<Vehicle> getAllVehicles();
 
 }

@@ -75,7 +75,7 @@ public class AdminController {
 
 // Actions
 	
-		// Fetch Transporter by id
+	// Fetch Transporter by id
 		
 		@RequestMapping("/admin/fetchTransporter")
 		public ModelAndView admFetchTransporter(@RequestParam("id") int id)
@@ -91,7 +91,7 @@ public class AdminController {
 		}
 		
 		
-		// Approve Transporter
+	// Approve Transporter
 		
 		@RequestMapping("/admin/approveTransporter")
 		public ModelAndView admApproveTransporter(@RequestParam("id") int transId)
@@ -119,7 +119,7 @@ public class AdminController {
 		}
 		
 		
-		// Decline Transporter Request
+	// Decline Transporter Request
 		
 		@RequestMapping("/admin/declineTransporter")
 		public ModelAndView admDeclineTransporter(@RequestParam("id") int transId)
@@ -148,7 +148,7 @@ public class AdminController {
 		}
 		
 		
-		// Fetch Vehicle by regno
+	// Fetch Vehicle by regno
 		
 		@RequestMapping("/admin/fetchVehicle")
 		public ModelAndView admFetchVehicle(@RequestParam("regNo") String regNo)
@@ -157,13 +157,13 @@ public class AdminController {
 			
 			if(vehicles!=null)
 			{
-			for(Vehicle v : vehicles)
-			{
-				if(v.getRegistrationNumber().equals(regNo))
+				for(Vehicle v : vehicles)
 				{
-					vehicle = v;
+					if(v.getRegistrationNumber().equals(regNo))
+					{
+						vehicle = v;
+					}
 				}
-			}
 			}
 			
 			//System.out.println(transporter);
@@ -173,5 +173,67 @@ public class AdminController {
 			modelAndView.addObject("vehicle",vehicle);
 			return modelAndView;
 		}
+		
+		
+	// Approve Vehicle
+		
+				@RequestMapping("/admin/approveVehicle")
+				public ModelAndView admApproveVehicle(@RequestParam("regNo") String regNo)
+				{
+					Vehicle vehicle=null;
+					
+					if(vehicles!=null)
+					{
+						for(Vehicle v : vehicles)
+						{
+							if(v.getRegistrationNumber().equals(regNo))
+							{
+								vehicle = v;
+							}
+						}
+					}
+					
+					String response = adminServices.approveVehicle(vehicle);
+					//System.out.println(response);
+					
+					vehicles = adminServices.getAllVehicles();
+					//System.out.println(vehicles);
+					
+					ModelAndView modelAndView = new ModelAndView("admin/AdmVehicles");
+					modelAndView.addObject("vehicles",vehicles);
+					return modelAndView;
+					
+				}
+				
+				
+		// Decline Transporter Request
+				
+				@RequestMapping("/admin/declineVehicle")
+				public ModelAndView admDeclineVehicle(@RequestParam("regNo") String regNo)
+				{
+					Vehicle vehicle=null;
+					
+					if(vehicles!=null)
+					{
+						for(Vehicle v : vehicles)
+						{
+							if(v.getRegistrationNumber().equals(regNo))
+							{
+								vehicle = v;
+							}
+						}
+					}
+					
+					String response = adminServices.declineVehicle(vehicle);
+					//System.out.println(response);
+					
+					vehicles = adminServices.getAllVehicles();
+					//System.out.println(vehicles);
+					
+					ModelAndView modelAndView = new ModelAndView("admin/AdmVehicles");
+					modelAndView.addObject("vehicles",vehicles);
+					return modelAndView;
+					
+				}
 
 }

@@ -96,13 +96,14 @@ pre
 
 .bodyDiv h3
 {
-	color:green;'
+	
 }
 
 table
 {
-	width:40%;
+	width:35%;
 	margin-left:5%;
+	float:left;
 }
 
 .lbl
@@ -134,6 +135,7 @@ table
 		<br>
 		
 		      <div class="contt" style="">
+		      <br/>
 			
 			<table>
 				<tr>
@@ -172,15 +174,27 @@ table
 				</tr>
 				
 			</table>
+			
+			<table>
+				<tr>
+					<td><p class="lbl"> Transporter Name :</p><td>
+					<td><p> ${vehicle.transporter.name} </p></td>
+				</tr>
+				
+				<tr>
+					<td><p class="lbl"> Transporter Email : </p> <td>
+					<td><p> ${vehicle.transporter.email} </p></td>
+				</tr>
+			</table>
             	
-              <div style="margin-left:37%;">
-              	<a href="" style="float:left;">
+              <div style="margin-left:37%; clear:both;">
+              	<a href="approveVehicle?regNo=${vehicle.registrationNumber}" style="float:left;">
             	<button type="button" class="btn btn-warning" >Approve Request</button>
             	</a>
             	
             	&nbsp;
             	
-            	<a href="" style="float:left; margin-left:20px;">
+            	<a href="declineVehicle?regNo=${vehicle.registrationNumber}" style="float:left; margin-left:20px;">
             	<button type="button" class="btn btn-danger" >Decline</button>
             	</a>
             	

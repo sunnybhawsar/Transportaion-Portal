@@ -35,13 +35,13 @@ public class CustomerController {
 		
 		int loginId = loginDetails.getLoginId();
 		
-		System.out.println("addController: loginId - "+loginId);
+		//System.out.println("addController: loginId - "+loginId);
 		
 		
 		
 		String response = customerServices.addCustomer(customer,loginId, file);
 		
-		System.out.println("addcontroller: Status - "+response);
+		//System.out.println("addcontroller: Status - "+response);
 		
 		ModelAndView modelAndView = new ModelAndView("other/Registered");
 		

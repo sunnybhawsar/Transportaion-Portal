@@ -35,6 +35,8 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		transaction.commit();
 		
+		session.close();
+		
 		return "Success";
 		
 	}
@@ -56,6 +58,25 @@ public class AdminDAOImpl implements AdminDAO {
 		session.close();
 		
 		return vehicles;
+	}
+
+
+	// Approve Vehicle
+	
+	@Override
+	public String approveVehicle(Vehicle vehicle) {
+		
+		session = sessionFactory.openSession();
+		
+		transaction = session.beginTransaction();
+		
+		session.update(vehicle);
+		
+		transaction.commit();
+		
+		session.close();
+		
+		return "Success";
 	}
 
 }

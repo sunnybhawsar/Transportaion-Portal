@@ -44,4 +44,26 @@ public class AdminServicesImpl implements AdminServices {
 		return vehicles;
 	}
 
+	// Approve/Decline Vehicle 
+
+	@Override
+	public String approveVehicle(Vehicle vehicle) {
+		
+		vehicle.setApproval(true);
+		
+		String response = adminDAO.approveVehicle(vehicle);
+		
+		return response;
+	}
+
+	@Override
+	public String declineVehicle(Vehicle vehicle) {
+		
+		vehicle.setApproval(false);
+		
+		String response = adminDAO.approveVehicle(vehicle);
+		
+		return response;
+	}
+
 }

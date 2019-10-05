@@ -19,7 +19,7 @@
 		<a href="custQueries" class="menuItems links">Queries</a>
 		
 			<a href="logout" class="menuItems button">
-				<button type="button" class="btn btn-info">Logout</button>
+				<button type="button" class="btn btn-primary">Logout</button>
 			</a>
 			
 		</div>

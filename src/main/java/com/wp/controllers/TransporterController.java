@@ -42,11 +42,11 @@ public class TransporterController {
 	public ModelAndView transVehicles(@SessionAttribute("id") int loginId)
 	{
 		
-		System.out.println("loginId: "+loginId);
+		//System.out.println("loginId: "+loginId);
 		
 		int transId = transporterServices.getTransporterId(loginId);
 		
-		System.out.println("tranId:"+transId);
+		//System.out.println("tranId:"+transId);
 
 		
 		 //Transporter transporter=transporterServices.getTransporter(transId);
@@ -121,12 +121,12 @@ public class TransporterController {
 		
 		int loginId = loginDetails.getLoginId();
 		
-		System.out.println("addController: loginId - "+loginId);
+		//System.out.println("addController: loginId - "+loginId);
 		
 		
 		String response = transporterServices.addTransporter(transporter,loginId, picture, identityProof);
 		
-		System.out.println("addcontroller: Status - "+response);
+		//System.out.println("addcontroller: Status - "+response);
 		
 		ModelAndView modelAndView = new ModelAndView("other/Registered");
 		
@@ -160,7 +160,7 @@ public class TransporterController {
 			status = "Something went wrong, Try again later!";
 		}
 		
-		System.out.println("savevehicleController: Status - "+response);
+		//System.out.println("savevehicleController: Status - "+response);
 		
 		ModelAndView modelAndView = new ModelAndView("transporter/TransAddVehicle");
 		
