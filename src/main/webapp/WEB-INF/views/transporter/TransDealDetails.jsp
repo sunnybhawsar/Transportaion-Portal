@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Transporter | Vehicle Details</title>
+<title>Transporter | Deal Details</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -108,6 +108,18 @@ pre
 {
 	color:green;'
 }
+
+table
+{
+	width:35%;
+	margin-left:6%;
+	float:left;
+}
+
+.lbl
+{
+	color:black;
+}
 </style>
 
 </head>
@@ -122,11 +134,11 @@ pre
 	<div class="bodyDiv">
 	
 		
-				<a href="transVehicles">
+				<a href="transDeals">
             	<button type="button" class="btn btn-info" >Back</button>
             	</a>
 	
-		<h3 align="center">Vehicle Details</h3>
+		<h3 align="center">Deal Details</h3>
 		
 		<br>
 		
@@ -134,43 +146,61 @@ pre
 			
 			<table>
 				<tr>
-					<td><p class="lbl"> Registration No : </p><td>
-					<td><p>${vehicle.registrationNumber}</p></td>
+					<td><p class="lbl"> Deal Id : </p></td>
+					<td><p>${deal.dealId}</p></td>
 				</tr>
 				
 				<tr>
-					<td><p class="lbl">Vehicle Type : </p><td>
-					<td><p> ${vehicle.vehicleType}</p></td>
+					<td><p class="lbl">Source City : </p></td>
+					<td><p> ${deal.sourceCity}</p></td>
 				</tr>
 				
 				<tr>
-					<td><p class="lbl"> Brand :  </p><td>
-					<td><p>${vehicle.brand}</p></td>
+					<td><p class="lbl"> Destination City :  </p></td>
+					<td><p>${deal.destinationCity}</p></td>
 				</tr>
 				
 				<tr>
-					<td><p class="lbl"> Capacity : </p><td>
-					<td><p>${vehicle.capacity}</p></td>
+					<td><p class="lbl"> Return Date : </p></td>
+					<td><p>${deal.returnDate}</p></td>
 				</tr>
 				
 				<tr>
-					<td><p class="lbl">  Insurance Paper :</p><td>
-					<td><p>${vehicle.insurance}  </p></td>
+					<td><p class="lbl">  Reach Date :</p></td>
+					<td><p>${deal.reachDate}  </p></td>
 				</tr>
 				
 				<tr>
-					<td><p class="lbl"> Id Proof : </p> <td>
-					<td><p>${vehicle.fitness} </p></td>
+					<td><p class="lbl"> Pricing : </p> </td>
+					<td><p>${deal.pricing} &nbsp; (in Rs/Kg)</p></td>
 				</tr>
 				
-				<tr>
-					<td><p class="lbl" style="color:maroon;">  Approval : </p><td>
-					<td><p style="color:maroon;">${vehicle.approval}</p></td>
-				</tr>
 				
 			</table>
+			
+			<table>
+				<caption style="margin-left:25%;">(Vehicle Details)</caption>
+			
+				<tr>
+					<td><p class="lbl"> Registration No : </p> </td>
+					<td><p>${deal.getVehicles().get(0).getRegistrationNumber()}</p></td>
+				</tr>
+				
+				<tr>
+					<td><p class="lbl"> Vehicle Type : </p> </td>
+					<td><p>${deal.getVehicles().get(0).getVehicleType()}</p></td>
+				</tr>
+				
+				<tr>
+					<td><p class="lbl"> Capacity : </p> </td>
+					<td><p>${deal.getVehicles().get(0).getCapacity()}</p></td>
+				</tr>
+			
+			</table>
             	
-              <div style="margin-left:37%;">
+            
+            	
+              <div style="margin-left:37%; margin-top:25px; clear:both; float:left;">
               	<a href="" style="float:left;">
             	<button type="button" class="btn btn-warning" >Edit Details</button>
             	</a>
@@ -178,7 +208,7 @@ pre
             	&nbsp;
             	
             	<a href="" style="float:left; margin-left:20px;">
-            	<button type="button" class="btn btn-danger" >Delete Vehicle</button>
+            	<button type="button" class="btn btn-danger" >Delete Deal</button>
             	</a>
             	
 			  </div>

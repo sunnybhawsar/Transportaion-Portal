@@ -20,7 +20,7 @@ public class Vehicle {
 	
 	@ManyToOne
 	private Transporter transporter;
-	
+
 
 // Getters and Setters
 	

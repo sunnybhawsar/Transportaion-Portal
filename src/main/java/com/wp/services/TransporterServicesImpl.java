@@ -2,6 +2,7 @@ package com.wp.services;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.wp.dao.TransporterDAO;
+import com.wp.models.Deal;
 import com.wp.models.Login;
 import com.wp.models.Transporter;
 import com.wp.models.Vehicle;
@@ -183,6 +185,37 @@ public class TransporterServicesImpl implements TransporterServices {
 		List <Vehicle> vehicles = transporterDAO.getAllVehicles(transId);
 		
 		return vehicles;
+	}
+
+
+	
+// Post deal
+	
+	@Override
+	public String saveDeal(Deal deal, String vehicles, int transId) {
+		
+		List <Vehicle> selectedVehicle = new ArrayList<Vehicle>();
+		
+		selectedVehicle.add(new Vehicle(vehicles));
+		
+		deal.setVehicles(selectedVehicle);
+		
+		deal.setTransporter(new Transporter(transId));
+		
+		String response = transporterDAO.saveDeal(deal);
+		
+		return response;
+	}
+
+
+// Get all deals
+	
+	@Override
+	public List<Deal> getAllDeals(int transId) {
+		
+		List <Deal> deals = transporterDAO.getAllDeals(transId);
+		
+		return deals;
 	}
 
 

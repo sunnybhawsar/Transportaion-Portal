@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wp.models.Deal;
 import com.wp.models.Login;
 import com.wp.models.Transporter;
 import com.wp.models.Vehicle;
@@ -28,6 +29,8 @@ public class TransporterController {
 	private TransporterServices transporterServices;
 	
 	public List <Vehicle> vehicles;
+	
+	public List <Deal> deals;
 	
 	
 // Routes
@@ -60,7 +63,7 @@ public class TransporterController {
 		 
 		  
 		  vehicles  = transporterServices.getAllVehicles(transId);
-		  System.out.println(vehicles);
+		 // System.out.println(vehicles);
 		
 		ModelAndView modelAndView = new ModelAndView("transporter/TransVehicles");
 		modelAndView.addObject("vehicles",vehicles);
@@ -68,9 +71,20 @@ public class TransporterController {
 	}
 
 	@RequestMapping("/transporter/transDeals")
-	public String transDeals()
+	public ModelAndView transDeals(@SessionAttribute("id") int loginId)
 	{
-		return "transporter/TransDeals";
+		
+		int transId = transporterServices.getTransporterId(loginId);
+		  
+		deals  = transporterServices.getAllDeals(transId);
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransDeals");
+		
+		modelAndView.addObject("deals",deals);
+		
+		/* deals.get(0).getVehicles().get(0).getRegistrationNumber() */
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping("/transporter/transQueries")
@@ -101,6 +115,48 @@ public class TransporterController {
 		modelAndView.addObject("brands",brands);
 		return modelAndView;
 	}
+	
+	
+	@RequestMapping("/transporter/addDeal")
+	public ModelAndView addDeal(@ModelAttribute("deal") Deal deal,@SessionAttribute("id") int loginId)
+	{
+		int transId = transporterServices.getTransporterId(loginId);
+		List <Vehicle> vehicles = transporterServices.getAllVehicles(transId);
+		
+		List <String> availableVehicles = new ArrayList<String>();
+		
+		for (Vehicle vehicle : vehicles)
+		{
+			if(vehicle.isApproval())
+			{
+				availableVehicles.add(vehicle.getRegistrationNumber());
+			}
+		}
+		
+		
+		List <String> sourceCities = new ArrayList<String>();
+		sourceCities.add("Indore");
+		sourceCities.add("Ujjain");
+		sourceCities.add("Dewas");
+		sourceCities.add("Ratlam");
+		sourceCities.add("Kota");
+		
+		List <String> destinationCities = new ArrayList<String>();
+		destinationCities.add("Japalpur");
+		destinationCities.add("Satna");
+		destinationCities.add("Khargone");
+		destinationCities.add("Udaipur");
+		destinationCities.add("Jaipur");
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransAddDeal");
+		modelAndView.addObject("availableVehicles",availableVehicles);
+		modelAndView.addObject("sourceCities",sourceCities);
+		modelAndView.addObject("destinationCities",destinationCities);
+		
+		return modelAndView;
+	}
+	
+	
 
 // Actions
 	
@@ -173,7 +229,7 @@ public class TransporterController {
 // fetch a vehicle details
 	
 	@RequestMapping("/transporter/fetchVehicle")
-	public ModelAndView admFetchTransporter(@RequestParam("regNo") String regNo)
+	public ModelAndView admFetchVehicle(@RequestParam("regNo") String regNo)
 	{
 		
 		Vehicle vehicle=null;
@@ -196,8 +252,71 @@ public class TransporterController {
 		modelAndView.addObject("vehicle",vehicle);
 		return modelAndView;
 	
-	
-	
 	}
 	
+	
+// Save a deal
+	
+	
+	@RequestMapping("transporter/saveDeal")
+	public ModelAndView saveDeal(
+			@ModelAttribute("deal") Deal deal,
+			@RequestParam("selectedVehicle") String selectedVehicle,
+			@SessionAttribute("id") int loginId
+			)
+	{
+		
+		int transId = transporterServices.getTransporterId(loginId);
+		
+		String response = transporterServices.saveDeal(deal, selectedVehicle, transId);
+		
+		String status;
+		
+		if(response.equals("Success"))
+		{
+			status = "Deal posted successfully!";
+		}
+		else
+		{
+			status = "Something went wrong, Try again later!";
+		}
+		
+		//System.out.println("savevehicleController: Status - "+response);
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransAddDeal");
+		
+		modelAndView.addObject("status",status);
+		
+		return modelAndView;
+	}
+	
+	
+// fetch a deal details
+	
+		@RequestMapping("/transporter/fetchDeal")
+		public ModelAndView admFetchDeal(@RequestParam("dealId") int dealId)
+		{
+			
+			Deal deal=null;
+			
+			if(deals!=null)
+			{
+			for(Deal d : deals)
+			{
+				if(d.getDealId() == dealId)
+				{
+					deal = d;
+				}
+			}
+			}
+			
+			//System.out.println(deal);
+			
+			ModelAndView modelAndView = new ModelAndView("transporter/TransDealDetails");
+
+			modelAndView.addObject("deal",deal);
+			return modelAndView;
+		
+		}
+		
 }

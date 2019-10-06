@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -36,6 +35,9 @@ public class Transporter {
 	@OneToMany(mappedBy="transporter", cascade = CascadeType.ALL)
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
 
+	@OneToMany(mappedBy="transporter", cascade = CascadeType.ALL)
+	private List<Deal> deals = new ArrayList<Deal>();
+	
 	
 	// Getters and Setters
 	

@@ -13,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.wp.models.Deal;
 import com.wp.models.Transporter;
 import com.wp.models.Vehicle;
 
@@ -130,7 +131,7 @@ public class TransporterDAOImpl implements TransporterDAO {
 	@Override
 	public List<Vehicle> getAllVehicles(int transId) {
 		
-session = sessionFactory.openSession();
+		session = sessionFactory.openSession();
 		
 		Criteria criteria = session.createCriteria(Vehicle.class);
 		
@@ -141,6 +142,44 @@ session = sessionFactory.openSession();
 		List<Vehicle> vehicles = criteria.list();		
 		
 		return vehicles;
+	}
+
+	
+// post deal
+	
+	@Override
+	public String saveDeal(Deal deal) {
+		
+		session = sessionFactory.openSession();
+		
+		transaction = session.beginTransaction();
+		
+		session.save(deal);
+		
+		transaction.commit();
+		
+		session.close();
+		
+		return "Success";
+	}
+
+	
+// Get all vehicles
+	
+	@Override
+	public List<Deal> getAllDeals(int transId) {
+		
+		session = sessionFactory.openSession();
+		
+		Criteria criteria = session.createCriteria(Deal.class);
+		
+		Criterion criterion = Restrictions.eq("transporter.transporterId", transId);
+		
+		criteria.add(criterion);
+	
+		List<Deal> deals = criteria.list();		
+		
+		return deals;
 	}
 
 	
