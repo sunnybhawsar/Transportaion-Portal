@@ -25,8 +25,8 @@ public class Deal {
 	private Date reachDate;
 	private int pricing;
 	
-	@OneToMany
-	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
+	@ManyToOne
+	private Vehicle vehicle;
 	
 	@ManyToOne
 	private Transporter transporter;
@@ -72,12 +72,13 @@ public class Deal {
 		this.pricing = pricing;
 	}
 
-	public List<Vehicle> getVehicles() {
-		return vehicles;
+
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
 
-	public void setVehicles(List<Vehicle> vehicles) {
-		this.vehicles = vehicles;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	public Transporter getTransporter() {
@@ -96,4 +97,15 @@ public class Deal {
 		this.reachDate = reachDate;
 	}
 
+	
+	public Deal(int dealId) {
+		super();
+		this.dealId = dealId;
+	}
+
+	public Deal() {
+		super();
+	}
+
+	
 }

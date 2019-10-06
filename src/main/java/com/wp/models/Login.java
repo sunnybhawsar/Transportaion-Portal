@@ -56,15 +56,7 @@ public class Login {
 	
 	
 	// Constructors
-	
-	public Login(int loginId, String username, String password, String role, boolean approval) {
-		super();
-		this.loginId = loginId;
-		this.username = username;
-		this.password = password;
-		this.role = role;
-		this.approval = approval;
-	}
+
 	public Login(int loginId) {
 		super();
 		this.loginId = loginId;
@@ -73,14 +65,5 @@ public class Login {
 		super();
 	}
 	
-	
-	// ToString Method
-	
-	@Override
-	public String toString() {
-		return "Login [loginId=" + loginId + ", username=" + username + ", password=" + password + ", role=" + role
-				+ ", approval=" + approval + "]";
-	}
-
 	
 }

@@ -69,27 +69,7 @@ public class RoutesController {
 	{
 		return "customer/CustHome";
 	}
-	
-	@RequestMapping("/customer/custProfile")
-	
-	public String custProfile()
-	{
-		return "customer/CustProfile";
-	}
-	
-	@RequestMapping("/customer/custExploreDeals")
-	
-	public String custExploreDeals()
-	{
-		return "customer/CustExploreDeals";
-	}
 
-	@RequestMapping("/customer/custQueries")
-	
-	public String custQueries()
-	{
-		return "customer/CustQueries";
-	}
 	
 	
 // Transporter Routes

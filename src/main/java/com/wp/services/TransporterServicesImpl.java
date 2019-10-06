@@ -192,13 +192,9 @@ public class TransporterServicesImpl implements TransporterServices {
 // Post deal
 	
 	@Override
-	public String saveDeal(Deal deal, String vehicles, int transId) {
+	public String saveDeal(Deal deal, String selectedVehicle, int transId) {
 		
-		List <Vehicle> selectedVehicle = new ArrayList<Vehicle>();
-		
-		selectedVehicle.add(new Vehicle(vehicles));
-		
-		deal.setVehicles(selectedVehicle);
+		deal.setVehicle(new Vehicle(selectedVehicle));
 		
 		deal.setTransporter(new Transporter(transId));
 		
@@ -216,6 +212,16 @@ public class TransporterServicesImpl implements TransporterServices {
 		List <Deal> deals = transporterDAO.getAllDeals(transId);
 		
 		return deals;
+	}
+
+
+// Get deal by id
+	
+	@Override
+	public Deal fetchDeal(int dealId) {
+		
+		Deal deal = transporterDAO.fetchDeal(dealId);
+		return deal;
 	}
 
 

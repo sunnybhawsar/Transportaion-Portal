@@ -25,5 +25,7 @@ public interface TransporterDAO {
 	public String saveDeal(Deal deal);
 	
 	public List <Deal> getAllDeals (int transId);
+	
+	public Deal fetchDeal(int dealId);
 
 }

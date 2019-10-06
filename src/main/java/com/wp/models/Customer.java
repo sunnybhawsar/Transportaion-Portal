@@ -123,13 +123,4 @@ public class Customer {
 	}
 
 	
-	// ToString Method
-	
-	@Override
-	public String toString() {
-		return "Customer [customerId=" + customerId + ", name=" + name + ", email=" + email + ", mobile=" + mobile
-				+ ", state=" + state + ", city=" + city + ", image=" + image + ", login=" + login + "]";
-	}
-	
-	
 }

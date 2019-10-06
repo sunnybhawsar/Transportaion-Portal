@@ -74,9 +74,9 @@
 
 			<form action="login" method="post" class="loginForm form-group">
 
-				<input type="text" id="username" name="username" class="form-control txtbox" placeholder="Username" /> <br> 
+				<input type="text" id="username" name="username" class="form-control txtbox" placeholder="Username" required="required"/> <br> 
 				
-				<input type="password" id="password" name="password" class="form-control txtbox" placeholder="Password" />  
+				<input type="password" id="password" name="password" class="form-control txtbox" placeholder="Password" required="required"/>  
 				
 				<a href="" class="forgot"><b>Forgot Password?</b></a>
 				

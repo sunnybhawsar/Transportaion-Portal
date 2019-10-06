@@ -183,17 +183,17 @@ table
 			
 				<tr>
 					<td><p class="lbl"> Registration No : </p> </td>
-					<td><p>${deal.getVehicles().get(0).getRegistrationNumber()}</p></td>
+					<td><p>${deal.vehicle.registrationNumber}</p></td>
 				</tr>
 				
 				<tr>
 					<td><p class="lbl"> Vehicle Type : </p> </td>
-					<td><p>${deal.getVehicles().get(0).getVehicleType()}</p></td>
+					<td><p>${deal.vehicle.vehicleType}</p></td>
 				</tr>
 				
 				<tr>
 					<td><p class="lbl"> Capacity : </p> </td>
-					<td><p>${deal.getVehicles().get(0).getCapacity()}</p></td>
+					<td><p>${deal.vehicle.capacity}</p></td>
 				</tr>
 			
 			</table>

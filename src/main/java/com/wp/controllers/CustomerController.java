@@ -1,5 +1,7 @@
 package com.wp.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wp.models.Customer;
+import com.wp.models.Deal;
 import com.wp.models.Login;
 import com.wp.services.CustomerServices;
 import com.wp.services.OtherServices;
@@ -21,6 +24,38 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerServices customerServices;
+	
+	public List <Deal> deals;
+	
+	
+	// Routes
+	
+	
+	@RequestMapping("/customer/custProfile")
+	
+	public String custProfile()
+	{
+		return "customer/CustProfile";
+	}
+	
+	@RequestMapping("/customer/custExploreDeals")
+	
+	public ModelAndView custExploreDeals()
+	{
+		deals = customerServices.getAllDeals();
+		
+		ModelAndView modelAndView = new ModelAndView("customer/CustExploreDeals");
+		modelAndView.addObject("deals",deals);
+		return modelAndView;
+	}
+
+	@RequestMapping("/customer/custQueries")
+	
+	public String custQueries()
+	{
+		return "customer/CustQueries";
+	}
+	
 	
 	
 	// Add new customer

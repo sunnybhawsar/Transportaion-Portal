@@ -27,4 +27,6 @@ public interface TransporterServices {
 	public String saveDeal(Deal deal, String vehicles, int transId);
 	
 	public List <Deal> getAllDeals (int transId);
+	
+	public Deal fetchDeal(int dealId);
 }

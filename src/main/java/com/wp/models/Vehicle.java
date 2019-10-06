@@ -1,8 +1,13 @@
 package com.wp.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Vehicle {
@@ -20,6 +25,10 @@ public class Vehicle {
 	
 	@ManyToOne
 	private Transporter transporter;
+	
+	@OneToMany(mappedBy="vehicle", cascade = CascadeType.ALL)
+	private List<Deal> deals = new ArrayList<Deal>();
+	
 
 
 // Getters and Setters
@@ -88,22 +97,17 @@ public class Vehicle {
 		this.transporter = transporter;
 	}
 	
+	public List<Deal> getDeals() {
+		return deals;
+	}
+
+	public void setDeals(List<Deal> deals) {
+		this.deals = deals;
+	}
+	
 	
 // Constructors
 	
-	public Vehicle(String registrationNumber, String vehicleType, String brand, int capacity, String insurance,
-			String fitness, boolean approval, Transporter transporter) {
-		super();
-		this.registrationNumber = registrationNumber;
-		this.vehicleType = vehicleType;
-		this.brand = brand;
-		this.capacity = capacity;
-		this.insurance = insurance;
-		this.fitness = fitness;
-		this.approval = approval;
-		this.transporter = transporter;
-	}
-
 	public Vehicle(String registrationNumber) {
 		super();
 		this.registrationNumber = registrationNumber;
@@ -112,17 +116,5 @@ public class Vehicle {
 	public Vehicle() {
 		super();
 	}
-	
-	
-// ToString Method
-	
-	@Override
-	public String toString() {
-		return "Vehicle [registrationNumber=" + registrationNumber + ", vehicleType=" + vehicleType + ", brand=" + brand
-				+ ", capacity=" + capacity + ", insaurance=" + insurance + ", fitness=" + fitness + ", approval="
-				+ approval + ", transporter=" + transporter + "]";
-	}
-	
-	
 	
 }

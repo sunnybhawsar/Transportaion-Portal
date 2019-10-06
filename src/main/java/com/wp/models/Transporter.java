@@ -133,37 +133,6 @@ public class Transporter {
 	
 	// Constructors
 	
-	public Transporter(int transporterId, String name, String email, String mobile, String address, String state,
-			String city, String image, String idProof, Login login, List<Vehicle> vehicles) {
-		super();
-		this.transporterId = transporterId;
-		this.name = name;
-		this.email = email;
-		this.mobile = mobile;
-		this.address = address;
-		this.state = state;
-		this.city = city;
-		this.image = image;
-		this.idProof = idProof;
-		this.login = login;
-		this.vehicles = vehicles;
-	}
-
-	public Transporter(int transporterId, String name, String email, String mobile, String address, String state,
-			String city, String image, String idProof, Login login) {
-		super();
-		this.transporterId = transporterId;
-		this.name = name;
-		this.email = email;
-		this.mobile = mobile;
-		this.address = address;
-		this.state = state;
-		this.city = city;
-		this.image = image;
-		this.idProof = idProof;
-		this.login = login;
-	}
-	
 	
 	public Transporter(int transporterId) {
 		super();
@@ -179,15 +148,4 @@ public class Transporter {
 		super();
 	}
 	
-	
-	// ToString Method
-
-	@Override
-	public String toString() {
-		return "Transporter [transporterId=" + transporterId + ", name=" + name + ", email=" + email + ", mobile="
-				+ mobile + ", address=" + address + ", state=" + state + ", city=" + city + ", image=" + image
-				+ ", idProof=" + idProof + ", login=" + login + " ]";
-	}
-
-
 }

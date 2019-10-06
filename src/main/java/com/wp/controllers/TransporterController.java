@@ -266,6 +266,8 @@ public class TransporterController {
 			)
 	{
 		
+		System.out.println("controller--"+selectedVehicle);
+		
 		int transId = transporterServices.getTransporterId(loginId);
 		
 		String response = transporterServices.saveDeal(deal, selectedVehicle, transId);
@@ -297,18 +299,19 @@ public class TransporterController {
 		public ModelAndView admFetchDeal(@RequestParam("dealId") int dealId)
 		{
 			
+			//Deal deal= transporterServices.fetchDeal(dealId);
 			Deal deal=null;
-			
-			if(deals!=null)
-			{
-			for(Deal d : deals)
-			{
-				if(d.getDealId() == dealId)
-				{
-					deal = d;
-				}
+		
+		  if(deals!=null) 
+		  {
+			  for(Deal d : deals)
+			  {
+				  if(d.getDealId() == dealId) 
+				  { deal = d; 
+				  }
 			}
-			}
+		}
+		 
 			
 			//System.out.println(deal);
 			

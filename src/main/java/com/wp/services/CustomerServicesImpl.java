@@ -2,6 +2,7 @@ package com.wp.services;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.wp.dao.CustomerDAO;
 import com.wp.models.Customer;
+import com.wp.models.Deal;
 import com.wp.models.Login;
 
 @Service
@@ -70,6 +72,17 @@ public class CustomerServicesImpl implements CustomerServices {
 	public String updateCustomer(Customer customer) {
 		
 		return null;
+	}
+
+
+// Get all deals
+	
+	@Override
+	public List<Deal> getAllDeals() {
+		
+		List <Deal> deals = customerDAO.getAllDeals();
+		
+		return deals;
 	}
 
 }

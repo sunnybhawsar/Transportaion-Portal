@@ -7,8 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Projection;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -48,8 +46,7 @@ public class TransporterDAOImpl implements TransporterDAO {
 		session = sessionFactory.openSession();
 		
 		Transporter transporter = session.get(Transporter.class, id);
-		System.out.println(transporter);
-		
+	
 		session.close();
 		
 		return transporter;
@@ -112,7 +109,7 @@ public class TransporterDAOImpl implements TransporterDAO {
 		cr.add(cri);
 		List<Transporter> idlist=cr.list();
 		
-		System.out.println(idlist);
+		//System.out.println(idlist);
 		
 		int transId = 0;
 		
@@ -180,6 +177,21 @@ public class TransporterDAOImpl implements TransporterDAO {
 		List<Deal> deals = criteria.list();		
 		
 		return deals;
+	}
+
+	
+// Get deal by id
+	
+	@Override
+	public Deal fetchDeal(int dealId) {
+		
+		session = sessionFactory.openSession();
+		
+		Deal deal = session.get(Deal.class, dealId);
+		
+		session.close();
+		
+		return deal;
 	}
 
 	
