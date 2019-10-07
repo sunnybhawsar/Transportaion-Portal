@@ -31,4 +31,6 @@ public interface TransporterServices {
 	
 	public List <Query> getAllQueries(int transId);
 	public String saveReply(Query query);
+	
+	public String getRating(Transporter transporter);
 }

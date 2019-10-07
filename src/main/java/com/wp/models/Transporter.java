@@ -28,7 +28,9 @@ public class Transporter {
 	private String city;
 	private String image;
 	private String idProof;
-	
+	private int rating;
+	private int ratedBy;
+
 	@OneToOne
 	private Login login;
 	
@@ -147,6 +149,22 @@ public class Transporter {
 
 	public void setQueries(List<Query> queries) {
 		this.queries = queries;
+	}
+	
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+
+	public int getRatedBy() {
+		return ratedBy;
+	}
+
+	public void setRatedBy(int ratedBy) {
+		this.ratedBy = ratedBy;
 	}
 	
 	// Constructors

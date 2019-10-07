@@ -248,5 +248,16 @@ public class TransporterServicesImpl implements TransporterServices {
 	}
 
 
+// Get rating
+	
+	@Override
+	public String getRating(Transporter transporter) {
+		
+		String res = transporterDAO.getRating(transporter);
+		
+		return res;
+	}
+
+
 
 }

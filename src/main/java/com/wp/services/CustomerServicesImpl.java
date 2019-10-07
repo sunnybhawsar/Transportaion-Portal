@@ -20,6 +20,9 @@ public class CustomerServicesImpl implements CustomerServices {
 	
 	@Autowired
 	private CustomerDAO customerDAO;
+	
+	@Autowired
+	private TransporterServices transporterServices;
 
 	
 // Add Customer
@@ -124,6 +127,27 @@ public class CustomerServicesImpl implements CustomerServices {
 		
 		List<Query> queries = customerDAO.getAllQueries(custId);
 		return queries;
+	}
+
+
+// Rate Transporter
+	
+	@Override
+	public String rateTransporter(int rating, int transId) {
+		
+		Transporter transporter = transporterServices.getTransporter(transId);
+		
+		int currentRating = transporter.getRating();
+		int ratedBy = transporter.getRatedBy();
+		
+		int updatedRating = ((currentRating*ratedBy)+rating)/(ratedBy+1);
+		
+		transporter.setRating(updatedRating);
+		transporter.setRatedBy(ratedBy+1);
+		
+		String res = transporterServices.getRating(transporter);
+
+		return res;
 	}
 
 }

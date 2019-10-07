@@ -167,6 +167,11 @@ table
 				</tr>
 				
 				<tr>
+					<td><p class="lbl"> Rating : </p> <td>
+					<td><p>${transporter.rating}</p></td>
+				</tr>
+				
+				<tr>
 					<td><p class="lbl" style="color:maroon;">  Approval : </p><td>
 					<td><p style="color:maroon;">${transporter.getLogin().isApproval()}</p></td>
 				</tr>

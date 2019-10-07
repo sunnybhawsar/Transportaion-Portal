@@ -130,6 +130,14 @@ pre
 	height: auto;
 	padding:2%;
 }
+
+#rating
+{
+	height: 35px;
+	width: 35px;
+	margin-left:5%;
+	margin-right:3%;
+}
 </style>
 
 </head>
@@ -145,6 +153,9 @@ pre
 		
 		<h3 align="center">Explore Deals</h3>
 		<br/>
+		
+		
+      <p align="right" style="color:#ED5C2C; margin-right:15%;">${status}</p>
          
  <c:forEach var="deal" items="${deals}">
          
@@ -220,7 +231,27 @@ pre
 				</tr>
 			
 			</table>
-         	
+			
+			<form action="rateTransporter" method="post">
+			
+				<input type="hidden" name="transId" value="${deal.transporter.transporterId}" />
+				<input type="hidden" name="transName" value="${deal.transporter.name}" />
+				
+				<select id="rating" name="rate" style="float:left;">
+	         		<option>1</option>
+	         		<option>2</option>
+	         		<option>3</option>
+	         		<option>4</option>
+	         		<option>5</option>
+	         	</select>
+	         	
+	  
+	              <input type="submit"  class="btn btn-info" style="float:left; value="GiveRating" />      
+	               	
+	             
+            
+         	</form>
+         		
          		
          		</div>
          		
@@ -257,19 +288,7 @@ pre
          	
 <!-- Actions -->        	
          	<div class="actionsDiv">
-         	<select id="rating" name="rating" style="float:left;">
-         		<option>1</option>
-         		<option>2</option>
-         		<option>3</option>
-         		<option>4</option>
-         		<option>5</option>
-         	</select>
          	
-         	 <a href="" style="float:left;"> 
-              <button type="button"  class="btn btn-info">      
-               	Rate Customer
-              </button>
-              </a>
          	</div>
               
          </div>

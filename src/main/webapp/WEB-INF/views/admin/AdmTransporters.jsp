@@ -149,6 +149,7 @@ pre
               <th>Name</th>
               <th>Email</th>
               <th>Mobile</th>
+              <th>Rating</th>
               <th>Approval</th>
               <th>Action</th>
      
@@ -162,6 +163,7 @@ pre
               <td><p>${transporter.getName()}</p></td>
               <td><p>${transporter.getEmail()}</p></td>
               <td><p>${transporter.getMobile()}</p></td>
+               <td><p style="color:#ED5C2C;">${transporter.rating}</p></td>
               <td><p>${transporter.getLogin().isApproval()}</p></td>
               
               <td>

@@ -234,5 +234,24 @@ public class TransporterDAOImpl implements TransporterDAO {
 	}
 
 	
+// Get rating
+	
+	@Override
+	public String getRating(Transporter transporter) {
+
+		session = sessionFactory.openSession();
+		
+		transaction = session.beginTransaction();
+		
+		session.update(transporter);
+		
+		transaction.commit();
+		
+		session.close();
+		
+		return "Success";
+	}
+
+	
 
 }

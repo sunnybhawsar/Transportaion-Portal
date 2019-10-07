@@ -29,5 +29,7 @@ public interface TransporterDAO {
 	
 	public List <Query> getAllQueries(int transId);
 	public String saveReply(Query query);
+	
+	public String getRating(Transporter transporter);
 
 }

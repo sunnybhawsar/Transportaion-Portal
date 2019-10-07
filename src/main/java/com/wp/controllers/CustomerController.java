@@ -173,5 +173,43 @@ public class CustomerController {
 		
 		return modelAndView;
 	}
+	
+	
+// Rate Transporter
+	
+	@RequestMapping("customer/rateTransporter")
+	public ModelAndView rateTransporter(
+			@SessionAttribute("id") int loginId,
+			@RequestParam("rate") String rate,
+			@RequestParam("transId") int transId,
+			@RequestParam("transName") String transName
+			)
+	{
+		int rating = Integer.parseInt(rate);
+		
+		String res = customerServices.rateTransporter(rating,transId);
+		
+		String status;
+		
+		if(res.equals("Success"))
+		{
+			status = "Transporter ("+transName+") Rated!";
+		}
+		else
+		{
+			status = "Try again later!";
+		}
+		
+		deals = customerServices.getAllDeals();
+		
+		ModelAndView modelAndView = new ModelAndView("customer/CustExploreDeals");
+		
+		modelAndView.addObject("status",status);
+		modelAndView.addObject("deals",deals);
+		
+		return modelAndView;
+	}
+
 
 }
+  

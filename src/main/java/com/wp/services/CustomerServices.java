@@ -24,5 +24,7 @@ public interface CustomerServices {
 	public List<Transporter> getAllTransporters();
 	
 	public String saveQuery(Query query,int transId, String transEmail, int custId, String custEmail);
+	
+	public String rateTransporter(int rating, int transId);
 
 }
