@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wp.models.Deal;
+import com.wp.models.Query;
 import com.wp.models.Transporter;
 import com.wp.models.Vehicle;
 
@@ -192,6 +193,44 @@ public class TransporterDAOImpl implements TransporterDAO {
 		session.close();
 		
 		return deal;
+	}
+
+	
+// Get all queries of transporter by id
+	
+	@Override
+	public List<Query> getAllQueries(int transId) {
+		
+		session = sessionFactory.openSession();
+		
+		Criteria criteria = session.createCriteria(Query.class);
+		
+		Criterion criterion = Restrictions.eq("transporter.transporterId", transId);
+		
+		criteria.add(criterion);
+	
+		List<Query> queries = criteria.list();		
+		
+		return queries;
+	}
+
+// Update Response
+	
+	@Override
+	public String saveReply(Query query) {
+		
+		session = sessionFactory.openSession();
+		
+		transaction = session.beginTransaction();
+		
+		session.update(query);
+		
+		transaction.commit();
+		
+		session.close();
+		
+		return "Success";
+		
 	}
 
 	

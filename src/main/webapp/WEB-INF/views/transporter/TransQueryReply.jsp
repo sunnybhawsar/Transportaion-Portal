@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	
+	 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	 
+	 <%@taglib uri="http://www.springframework.org/tags/form"  prefix="frm" %>
+		  
 	<%@page isELIgnored="false" %>
-	
-	<%@taglib uri="http://www.springframework.org/tags/form"  prefix="frm" %>
-	
+     
   <%
   if(request.getSession().getAttribute("id")==null)
   	response.sendRedirect("sessionExpired");
@@ -15,7 +15,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Customer | Queries</title>
+<title>Transporter | Reply </title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -35,7 +35,7 @@ pre
 .menuItems
 {
 	float:left;
-	margin-left:5%;
+	margin-left:35px;
 }
 
 .links
@@ -45,11 +45,11 @@ pre
 
 .first
 {
-	margin-left:30%;
+	margin-left:2%;
 }
 
 
-@media screen and (max-width:1250px) 
+@media screen and (max-width:1300px) 
 {
 	.button
 	{
@@ -72,9 +72,10 @@ pre
 		margin-left:10px;
 		
 	}
+	
 	.button
 	{
-		margin-top:10px;
+		margin-top: 15px;
 	}
 }
 
@@ -86,7 +87,7 @@ pre
 
 .bodyDiv
 {
-	margin-left:3%;
+	padding-left:3%;
 }
 
 .logo
@@ -111,7 +112,6 @@ pre
 {
 	color:green;'
 }
-
 
 /* Form css */
 
@@ -163,6 +163,7 @@ pre
 	margin-bottom:0px;
 	color:black;
 }
+
 </style>
 
 </head>
@@ -171,10 +172,10 @@ pre
 <div class="mainDiv">
 
 	<div class="headerDiv">		
-		<%@include file="CustHeader.jsp" %>
+		<%@include file="TransHeader.jsp" %>
 	</div>
 	
-	<a href="custQueries" style="margin-left:10%;">
+	<a href="transQueries" style="margin-left:10%;">
             	<button type="button" class="btn btn-info">Back</button>
     </a>	
 	
@@ -185,31 +186,28 @@ pre
 	
 		<div class="formDiv card">
 
-			<h2>Ask Query</h2>
+			<h2>Add Reply</h2>
 			<br>
 			
 
-			<frm:form action="saveQuery" modelAttribute="query"  method="post" class="registerForm form-group">
-			
-				<p class="headings">Select Transporter</p>			
+			<form action="saveReply"  method="post" class="registerForm form-group">
 				
-				<select class="form-control" name="selectedTransporter" required="required">
-					<c:forEach var="transporterName" items="${transporterNames}">
-     				<option>${transporterName}</option>
-   					 </c:forEach>
-				</select> <br/>
+				<input type="hidden" id="qId" name="qId" value="${query.queryId}"/>
 				
+				<p class="headings">Query :</p> <br/>
+				<label> ${query.query} </label> <br/>
 				
-				<p class="headings">Enter Your Query</p>
+	
+				<p class="headings">Enter Your Reply :</p>
 				
-				<textarea  id="queryData" name="queryData" class="form-control"  required="required">
+				<textarea  id="reply" name="reply" class="form-control"  required="required">
 				</textarea> <br/> 
 				
 				
 				
-				<input type="submit" class="btn btn-success form-control" value="Submit Query"/>
+				<input type="submit" class="btn btn-success form-control" value="Submit Reply"/>
 		
-			</frm:form>
+			</form>
 		</div>
 	</div>
 

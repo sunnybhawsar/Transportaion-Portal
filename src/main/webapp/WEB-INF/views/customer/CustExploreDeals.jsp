@@ -257,9 +257,17 @@ pre
          	
 <!-- Actions -->        	
          	<div class="actionsDiv">
-         	 <a href=""> 
+         	<select id="rating" name="rating" style="float:left;">
+         		<option>1</option>
+         		<option>2</option>
+         		<option>3</option>
+         		<option>4</option>
+         		<option>5</option>
+         	</select>
+         	
+         	 <a href="" style="float:left;"> 
               <button type="button"  class="btn btn-info">      
-                Ask Query
+               	Rate Customer
               </button>
               </a>
          	</div>

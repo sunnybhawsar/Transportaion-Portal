@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.wp.dao.TransporterDAO;
 import com.wp.models.Deal;
 import com.wp.models.Login;
+import com.wp.models.Query;
 import com.wp.models.Transporter;
 import com.wp.models.Vehicle;
 
@@ -222,6 +223,28 @@ public class TransporterServicesImpl implements TransporterServices {
 		
 		Deal deal = transporterDAO.fetchDeal(dealId);
 		return deal;
+	}
+
+	
+// Get all queries of specific transporter
+
+	@Override
+	public List<Query> getAllQueries(int transId) {
+		
+		List <Query> queries = transporterDAO.getAllQueries(transId);
+		
+		return queries;
+	}
+
+
+// Save Reply
+	
+	@Override
+	public String saveReply(Query query) {
+		
+		String res = transporterDAO.saveReply(query);
+		
+		return res;
 	}
 
 

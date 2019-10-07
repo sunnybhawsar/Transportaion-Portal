@@ -57,7 +57,6 @@ public class CustomerController {
 	}
 
 	@RequestMapping("/customer/custQueries")
-	
 	public ModelAndView custQueries(@SessionAttribute("id") int loginId)
 	{
 		int customerId = otherServices.getLoginDetails(loginId).getCustomer().getCustomerId();
@@ -125,6 +124,7 @@ public class CustomerController {
 	public ModelAndView saveQuery (
 			@ModelAttribute("query") Query query,
 			@RequestParam("selectedTransporter") String selectedTransporter,
+			@RequestParam("queryData") String queryData,
 			@SessionAttribute("id") int loginId			
 			)
 	{
@@ -147,6 +147,11 @@ public class CustomerController {
 		
 		int custId = otherServices.getLoginDetails(loginId).getCustomer().getCustomerId();
 		String customerEmail = otherServices.getLoginDetails(loginId).getCustomer().getEmail();
+		
+		
+		queryData = queryData.trim();
+		
+		query.setQuery(queryData);
 		
 		String res = customerServices.saveQuery(query,transId,transporterEmail,custId,customerEmail);
 		

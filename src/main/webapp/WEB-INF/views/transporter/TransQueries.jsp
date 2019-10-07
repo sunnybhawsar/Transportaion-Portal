@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	
+	 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	  
 	<%@page isELIgnored="false" %>
      
   <%
@@ -101,7 +103,7 @@ pre
 
 .bodyDiv
 {
-	margin-left:5%;
+	margin-left:0%;
 }
 
 .bodyDiv h3
@@ -120,7 +122,51 @@ pre
 	</div>
 	
 	<div class="bodyDiv">
-		<h3>Customer Queries</h3>
+		
+		<h3 align="center">Customer Queries</h3>
+		<br/>
+		
+		<div class="table-responsive-md">
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Customer Name</th>
+              <th>Customer Email</th>
+              <th>Query</th>
+              <th>Response</th>
+              <th>Action</th>
+     
+            </tr>
+         
+         <c:forEach var="query" items="${queries}">
+       
+      		 <tr>
+              
+               <td><p>${query.queryId}</p></td>
+              <td><p>${query.customer.name}</p></td>
+              <td><p>${query.customerEmail}</p></td>
+              <td><p>${query.query}</p></td>
+              <td><p>${query.response}</p></td>
+              
+              <td>
+               
+              <a href="queryReply?queryId=${query.queryId}"> 
+              <button type="button"  class="btn btn-info">      
+                Reply
+              </button>
+              </a>
+              
+                &nbsp;
+                
+              <button type="button" class="btn btn-danger"> Delete </button>
+              </td>
+          </tr>
+          
+          </c:forEach>
+          
+          </table>
+        </div>
+
 	</div>
 
 </div>

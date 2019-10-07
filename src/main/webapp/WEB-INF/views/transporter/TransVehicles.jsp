@@ -103,7 +103,7 @@ pre
 
 .bodyDiv
 {
-	margin-left:5%;
+	margin-left:0%;
 }
 
 .bodyDiv h3

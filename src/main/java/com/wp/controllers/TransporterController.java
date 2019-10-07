@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.wp.models.Deal;
 import com.wp.models.Login;
+import com.wp.models.Query;
 import com.wp.models.Transporter;
 import com.wp.models.Vehicle;
 import com.wp.services.OtherServices;
@@ -31,6 +32,8 @@ public class TransporterController {
 	public List <Vehicle> vehicles;
 	
 	public List <Deal> deals;
+	
+	public List <Query> queries;
 	
 	
 // Routes
@@ -86,9 +89,17 @@ public class TransporterController {
 	}
 	
 	@RequestMapping("/transporter/transQueries")
-	public String transQueries()
+	public ModelAndView transQueries(@SessionAttribute("id") int loginId)
 	{
-		return "transporter/TransQueries";
+		int transporterId = otherServices.getLoginDetails(loginId).getTransporter().getTransporterId();
+		
+		queries = transporterServices.getAllQueries(transporterId);
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransQueries");
+		
+		modelAndView.addObject("queries", queries);
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping("/transporter/addVehicle")
@@ -318,5 +329,75 @@ public class TransporterController {
 			return modelAndView;
 		
 		}
+		
+		
+// fetch a query details
+		
+			@RequestMapping("/transporter/queryReply")
+			public ModelAndView transReplyQuery(@RequestParam("queryId") int queryId)
+			{
+				
+			Query query = null;
+			
+			  if(queries!=null) 
+			  {
+				  for(Query q : queries)
+				  {
+					  if(q.getQueryId() == queryId) 
+					  { 
+						  query = q; 
+					  }
+				}
+			}
+			 
+				ModelAndView modelAndView = new ModelAndView("transporter/TransQueryReply");
+
+				modelAndView.addObject("query",query);
+				return modelAndView;
+			
+			}
+			
+			
+ // save Query Reply
+			
+			@RequestMapping("/transporter/saveReply")
+			public ModelAndView transSaveReply(@RequestParam("qId") int qId, @RequestParam("reply") String reply )
+			{
+				Query updatedQuery = null;
+				
+				  if(queries!=null) 
+				  {
+					  for(Query q : queries)
+					  {
+						  if(q.getQueryId() == qId) 
+						  { 
+							  updatedQuery = q; 
+						  }
+					}
+				}
+				  
+				reply = reply.trim();
+				
+				updatedQuery.setResponse(reply);
+				
+				String res = transporterServices.saveReply(updatedQuery);
+				
+				String status;
+				if(res.equals("Success"))
+				{
+					status = "Reply sent successfully!";
+				}
+				else
+				{
+					status = "Something went wrong, Try again later!";
+				}
+				
+				
+				ModelAndView modelAndView = new ModelAndView("transporter/TransQueryReply");
+				
+				modelAndView.addObject("status",status);
+				
+				return modelAndView;
+			}
 		
 }

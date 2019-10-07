@@ -110,7 +110,7 @@ public class CustomerServicesImpl implements CustomerServices {
 		query.setTransporter(new Transporter(transId));
 		query.setTransporterEmail(transEmail);
 		
-		query.setResponse("");
+		query.setResponse("(No Response)");
 		
 		String res = customerDAO.saveQuery(query);
 		
