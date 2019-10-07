@@ -38,6 +38,9 @@ public class Transporter {
 	@OneToMany(mappedBy="transporter", cascade = CascadeType.ALL)
 	private List<Deal> deals = new ArrayList<Deal>();
 	
+	@OneToMany(mappedBy="transporter", cascade = CascadeType.ALL)
+	private List<Query> queries = new ArrayList<Query>();
+	
 	
 	// Getters and Setters
 	
@@ -129,11 +132,26 @@ public class Transporter {
 		this.vehicles = vehicles;
 	}	
 	
+	
+	public List<Deal> getDeals() {
+		return deals;
+	}
 
+	public void setDeals(List<Deal> deals) {
+		this.deals = deals;
+	}
+
+	public List<Query> getQueries() {
+		return queries;
+	}
+
+	public void setQueries(List<Query> queries) {
+		this.queries = queries;
+	}
 	
 	// Constructors
 	
-	
+
 	public Transporter(int transporterId) {
 		super();
 		this.transporterId = transporterId;

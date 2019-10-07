@@ -3,6 +3,7 @@ package com.wp.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,6 +20,12 @@ public class Login {
 	
 	@org.hibernate.annotations.Type(type="true_false")
 	private boolean approval;
+	
+	@OneToOne(mappedBy="login")
+	private Transporter transporter;
+	
+	@OneToOne(mappedBy="login")
+	private Customer customer;
 	
 	
 	// Getters and Setters
@@ -54,8 +61,20 @@ public class Login {
 		this.approval = approval;
 	}
 	
-	
+	public Transporter getTransporter() {
+		return transporter;
+	}
+	public void setTransporter(Transporter transporter) {
+		this.transporter = transporter;
+	}
+	public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	// Constructors
+
 
 	public Login(int loginId) {
 		super();

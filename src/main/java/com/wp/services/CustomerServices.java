@@ -6,6 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.wp.models.Customer;
 import com.wp.models.Deal;
+import com.wp.models.Query;
+import com.wp.models.Transporter;
 
 public interface CustomerServices {
 	
@@ -16,5 +18,11 @@ public interface CustomerServices {
 	public String updateCustomer(Customer customer);
 	
 	public List<Deal> getAllDeals();
+	
+	public List<Query> getAllQueries(int custId);
+	
+	public List<Transporter> getAllTransporters();
+	
+	public String saveQuery(Query query,int transId, String transEmail, int custId, String custEmail);
 
 }

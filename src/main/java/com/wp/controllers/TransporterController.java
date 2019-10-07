@@ -82,8 +82,6 @@ public class TransporterController {
 		
 		modelAndView.addObject("deals",deals);
 		
-		/* deals.get(0).getVehicles().get(0).getRegistrationNumber() */
-		
 		return modelAndView;
 	}
 	
@@ -266,7 +264,6 @@ public class TransporterController {
 			)
 	{
 		
-		System.out.println("controller--"+selectedVehicle);
 		
 		int transId = transporterServices.getTransporterId(loginId);
 		

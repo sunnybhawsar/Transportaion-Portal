@@ -32,6 +32,8 @@ public class Deal {
 	private Transporter transporter;
 	
 
+	// Getters and Setters
+	
 	public int getDealId() {
 		return dealId;
 	}
@@ -97,6 +99,7 @@ public class Deal {
 		this.reachDate = reachDate;
 	}
 
+	// Constructors
 	
 	public Deal(int dealId) {
 		super();

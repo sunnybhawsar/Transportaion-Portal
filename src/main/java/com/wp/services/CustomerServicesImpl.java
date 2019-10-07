@@ -12,6 +12,8 @@ import com.wp.dao.CustomerDAO;
 import com.wp.models.Customer;
 import com.wp.models.Deal;
 import com.wp.models.Login;
+import com.wp.models.Query;
+import com.wp.models.Transporter;
 
 @Service
 public class CustomerServicesImpl implements CustomerServices {
@@ -83,6 +85,45 @@ public class CustomerServicesImpl implements CustomerServices {
 		List <Deal> deals = customerDAO.getAllDeals();
 		
 		return deals;
+	}
+
+
+// Get all transporters
+	
+	@Override
+	public List<Transporter> getAllTransporters() {
+		
+		List <Transporter> transporters = customerDAO.getAllTransporters();
+		
+		return transporters;
+	}
+
+
+// Save Query
+	
+	@Override
+	public String saveQuery(Query query, int transId, String transEmail, int custId, String custEmail) {
+		
+		query.setCustomer(new Customer(custId));
+		query.setCustomerEmail(custEmail);
+		
+		query.setTransporter(new Transporter(transId));
+		query.setTransporterEmail(transEmail);
+		
+		query.setResponse("");
+		
+		String res = customerDAO.saveQuery(query);
+		
+		return res;
+	}
+
+// Get all queries
+
+	@Override
+	public List<Query> getAllQueries(int custId) {
+		
+		List<Query> queries = customerDAO.getAllQueries(custId);
+		return queries;
 	}
 
 }

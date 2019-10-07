@@ -1,5 +1,6 @@
 package com.wp.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +8,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.wp.models.Customer;
 import com.wp.models.Deal;
 import com.wp.models.Login;
+import com.wp.models.Query;
+import com.wp.models.Transporter;
 import com.wp.services.CustomerServices;
 import com.wp.services.OtherServices;
 
@@ -27,6 +31,10 @@ public class CustomerController {
 	
 	public List <Deal> deals;
 	
+	public List <Transporter> transporters;
+	
+	public List <Query> queries;
+	
 	
 	// Routes
 	
@@ -39,7 +47,6 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/customer/custExploreDeals")
-	
 	public ModelAndView custExploreDeals()
 	{
 		deals = customerServices.getAllDeals();
@@ -51,9 +58,37 @@ public class CustomerController {
 
 	@RequestMapping("/customer/custQueries")
 	
-	public String custQueries()
+	public ModelAndView custQueries(@SessionAttribute("id") int loginId)
 	{
-		return "customer/CustQueries";
+		int customerId = otherServices.getLoginDetails(loginId).getCustomer().getCustomerId();
+		
+		queries = customerServices.getAllQueries(customerId);
+		
+		ModelAndView modelAndView = new ModelAndView("customer/CustQueries");
+		
+		modelAndView.addObject("queries", queries);
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping("/customer/askQuery")
+	public ModelAndView custAskQuery()
+	{
+		transporters = customerServices.getAllTransporters();
+		
+		List <String> transporterNames = new ArrayList<String>();
+		
+		for (Transporter transporter : transporters)
+		{
+			if(transporter.getLogin().isApproval())
+			{
+				transporterNames.add(transporter.getName());
+			}
+		}
+		
+		ModelAndView modelAndView = new ModelAndView("customer/CustAskQuery");
+		modelAndView.addObject("transporterNames",transporterNames);
+		return modelAndView;
 	}
 	
 	
@@ -79,6 +114,57 @@ public class CustomerController {
 		//System.out.println("addcontroller: Status - "+response);
 		
 		ModelAndView modelAndView = new ModelAndView("other/Registered");
+		
+		return modelAndView;
+	}
+	
+	
+// Save Query
+	
+	@RequestMapping("customer/saveQuery")
+	public ModelAndView saveQuery (
+			@ModelAttribute("query") Query query,
+			@RequestParam("selectedTransporter") String selectedTransporter,
+			@SessionAttribute("id") int loginId			
+			)
+	{
+		
+		Transporter transporter = null;
+		
+		  if(transporters!=null) 
+		  {
+			  for(Transporter t : transporters)
+			  {
+				  if(t.getName().equals(selectedTransporter)) 
+				  { 
+					  transporter = t; 
+				  }
+			}
+		}
+		  
+		int transId = transporter.getTransporterId();
+		String transporterEmail = transporter.getEmail();
+		
+		int custId = otherServices.getLoginDetails(loginId).getCustomer().getCustomerId();
+		String customerEmail = otherServices.getLoginDetails(loginId).getCustomer().getEmail();
+		
+		String res = customerServices.saveQuery(query,transId,transporterEmail,custId,customerEmail);
+		
+		String status;
+		
+		if(res.equals("Success"))
+		{
+			status = "Query sent successfully!";
+		}
+		else
+		{
+			status = "Something went wrong, Try again later!";
+		}
+		
+		
+		ModelAndView modelAndView = new ModelAndView("customer/CustAskQuery");
+		
+		modelAndView.addObject("status",status);
 		
 		return modelAndView;
 	}

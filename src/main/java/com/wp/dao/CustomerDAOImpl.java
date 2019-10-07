@@ -6,11 +6,16 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.wp.models.Customer;
 import com.wp.models.Deal;
+import com.wp.models.Login;
+import com.wp.models.Query;
+import com.wp.models.Transporter;
 import com.wp.models.Vehicle;
 
 @Repository
@@ -65,6 +70,57 @@ public class CustomerDAOImpl implements CustomerDAO {
 		session.close();
 		
 		return deals;
+	}
+
+	@Override
+	public List<Transporter> getAllTransporters() {
+		
+		session = sessionFactory.openSession();
+		
+		@SuppressWarnings("deprecation")
+		Criteria criteria = session.createCriteria(Transporter.class);
+		
+		@SuppressWarnings("unchecked")
+		List <Transporter> transporters = criteria.list();
+		
+		session.close();
+		
+		return transporters;
+	}
+
+	
+	// Save Query
+	
+	@Override
+	public String saveQuery(Query query) {
+		session = sessionFactory.openSession();
+		
+		transaction = session.beginTransaction();
+		
+		session.save(query);
+		
+		transaction.commit();
+		
+		return "Success";
+	}
+
+	
+	// Get all queries by custId
+	
+	@Override
+	public List<Query> getAllQueries(int custId) {
+
+		session = sessionFactory.openSession();
+		
+		Criteria criteria = session.createCriteria(Query.class);
+		
+		Criterion criterion = Restrictions.eq("customer.customerId", custId);
+		
+		criteria.add(criterion);
+	
+		List<Query> queries = criteria.list();		
+		
+		return queries;
 	}
 
 }
