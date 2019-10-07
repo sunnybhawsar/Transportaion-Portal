@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+     
   <%@page isELIgnored="false" %>
       
   <%
@@ -96,7 +98,7 @@ pre
 
 .bodyDiv h3
 {
-	color:green;'
+	color:green;
 }
 </style>
 
@@ -113,7 +115,48 @@ pre
 	
 	<div class="bodyDiv">
 	
-		<h3>Deals List</h3>
+		<h3 align="center">Deals List</h3>
+		<br/>
+		
+		
+		<div class="table-responsive-md">
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Source City</th>
+              <th>Destination City</th>
+              <th>Return Date</th>
+              <th>Reach Date</th>
+              <th>Action</th>
+     
+            </tr>
+         
+         <c:forEach var="deal" items="${deals}">
+       
+      		 <tr>
+              
+               <td><p>${deal.dealId}</p></td>
+              <td><p>${deal.sourceCity}</p></td>
+              <td><p>${deal.destinationCity}</p></td>
+              <td><p>${deal.returnDate}</p></td>
+              <td><p>${deal.reachDate}</p></td>
+              
+              <td>
+               
+              <a href="fetchDeal?dealId=${deal.dealId}"> 
+              <button type="button"  class="btn btn-info">      
+                More Details
+              </button>
+              </a>
+                &nbsp;
+              <button type="button" class="btn btn-danger"> Delete </button>
+              </td>
+          </tr>
+          
+          </c:forEach>
+          
+          </table>
+        </div>
 		
 	</div>
 	

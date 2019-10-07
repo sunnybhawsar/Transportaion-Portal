@@ -2,6 +2,7 @@ package com.wp.dao;
 
 import java.util.List;
 
+import com.wp.models.Deal;
 import com.wp.models.Login;
 import com.wp.models.Vehicle;
 
@@ -13,4 +14,5 @@ public interface AdminDAO {
 	
 	public List<Vehicle> getAllVehicles();
 
+	public List<Deal> getAllDeals();
 }

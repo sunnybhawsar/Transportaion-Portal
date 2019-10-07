@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wp.dao.AdminDAO;
+import com.wp.models.Deal;
 import com.wp.models.Login;
 import com.wp.models.Vehicle;
 
@@ -64,6 +65,17 @@ public class AdminServicesImpl implements AdminServices {
 		String response = adminDAO.approveVehicle(vehicle);
 		
 		return response;
+	}
+
+	
+	// Get all deals
+	
+	@Override
+	public List<Deal> getAllDeals() {
+		
+		List <Deal> deals = adminDAO.getAllDeals();
+		
+		return deals;
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wp.models.Deal;
 import com.wp.models.Login;
 import com.wp.models.Transporter;
 import com.wp.models.Vehicle;
@@ -29,6 +30,7 @@ public class AdminController {
 	
 	public List <Transporter> transporters;
 	public List <Vehicle> vehicles;
+	public List <Deal> deals;
 	
 	public Transporter transporter;
 	
@@ -67,9 +69,15 @@ public class AdminController {
 		
 		
 		@RequestMapping("/admin/admDeals")
-		public String admDeals()
+		public ModelAndView admDeals()
 		{
-			return "admin/AdmDeals";
+			deals = adminServices.getAllDeals();
+			
+			ModelAndView modelAndView = new ModelAndView("admin/AdmDeals");
+			
+			modelAndView.addObject("deals",deals);
+			
+			return modelAndView;
 		}
 		
 
@@ -234,6 +242,36 @@ public class AdminController {
 					modelAndView.addObject("vehicles",vehicles);
 					return modelAndView;
 					
+				}
+				
+				
+	// fetch a deal details
+				
+				@RequestMapping("/admin/fetchDeal")
+				public ModelAndView admFetchDeal(@RequestParam("dealId") int dealId)
+				{
+					
+					//Deal deal= transporterServices.fetchDeal(dealId);
+					Deal deal=null;
+				
+				  if(deals!=null) 
+				  {
+					  for(Deal d : deals)
+					  {
+						  if(d.getDealId() == dealId) 
+						  { deal = d; 
+						  }
+					}
+				}
+				 
+					
+					//System.out.println(deal);
+					
+					ModelAndView modelAndView = new ModelAndView("admin/AdmDealDetails");
+
+					modelAndView.addObject("deal",deal);
+					return modelAndView;
+				
 				}
 
 }

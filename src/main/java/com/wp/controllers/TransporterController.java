@@ -296,7 +296,7 @@ public class TransporterController {
 // fetch a deal details
 	
 		@RequestMapping("/transporter/fetchDeal")
-		public ModelAndView admFetchDeal(@RequestParam("dealId") int dealId)
+		public ModelAndView transFetchDeal(@RequestParam("dealId") int dealId)
 		{
 			
 			//Deal deal= transporterServices.fetchDeal(dealId);
