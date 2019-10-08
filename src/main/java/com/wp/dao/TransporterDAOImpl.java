@@ -102,12 +102,14 @@ public class TransporterDAOImpl implements TransporterDAO {
 		
 		session = sessionFactory.openSession();
 		
+		@SuppressWarnings("deprecation")
 		Criteria cr=session.createCriteria(Transporter.class);
 		
 		Criterion cri=Restrictions.eq("login.loginId", loginId);
 		
 	//	Projection projection=Projections.property("transporterId");
 		cr.add(cri);
+		@SuppressWarnings("unchecked")
 		List<Transporter> idlist=cr.list();
 		
 		//System.out.println(idlist);
@@ -131,12 +133,14 @@ public class TransporterDAOImpl implements TransporterDAO {
 		
 		session = sessionFactory.openSession();
 		
+		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Vehicle.class);
 		
 		Criterion criterion = Restrictions.eq("transporter.transporterId", transId);
 		
 		criteria.add(criterion);
 	
+		@SuppressWarnings("unchecked")
 		List<Vehicle> vehicles = criteria.list();		
 		
 		return vehicles;
@@ -169,12 +173,14 @@ public class TransporterDAOImpl implements TransporterDAO {
 		
 		session = sessionFactory.openSession();
 		
+		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Deal.class);
 		
 		Criterion criterion = Restrictions.eq("transporter.transporterId", transId);
 		
 		criteria.add(criterion);
 	
+		@SuppressWarnings("unchecked")
 		List<Deal> deals = criteria.list();		
 		
 		return deals;
@@ -203,12 +209,14 @@ public class TransporterDAOImpl implements TransporterDAO {
 		
 		session = sessionFactory.openSession();
 		
+		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Query.class);
 		
 		Criterion criterion = Restrictions.eq("transporter.transporterId", transId);
 		
 		criteria.add(criterion);
 	
+		@SuppressWarnings("unchecked")
 		List<Query> queries = criteria.list();		
 		
 		return queries;

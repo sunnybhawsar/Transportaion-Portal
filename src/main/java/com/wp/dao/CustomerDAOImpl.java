@@ -13,10 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import com.wp.models.Customer;
 import com.wp.models.Deal;
-import com.wp.models.Login;
 import com.wp.models.Query;
 import com.wp.models.Transporter;
-import com.wp.models.Vehicle;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -112,12 +110,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 		session = sessionFactory.openSession();
 		
+		@SuppressWarnings("deprecation")
 		Criteria criteria = session.createCriteria(Query.class);
 		
 		Criterion criterion = Restrictions.eq("customer.customerId", custId);
 		
 		criteria.add(criterion);
 	
+		@SuppressWarnings("unchecked")
 		List<Query> queries = criteria.list();		
 		
 		return queries;

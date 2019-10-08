@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +53,7 @@
 {
 	width:100%;
 	height:70%;
+	padding-top:10%;
 	
 }
 </style>
@@ -66,6 +70,8 @@
 			
 				<div class="pic">
 				
+				<img src="<c:url value="/images/customer.png"/>" height="100%" width="50%" />
+				
 				</div>
 				
 				<br/>
@@ -79,7 +85,10 @@
 			<form action="transporterRegistration" method="post" class="card rcontent form-group">
 				
 				<div class="pic">
+					
+					<img src="<c:url value="/images/transporter.png"/>" height="100%" width="50%" />
 				
+					
 				</div>
 				
 				<br/>

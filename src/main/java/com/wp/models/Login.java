@@ -1,5 +1,6 @@
 package com.wp.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,10 +22,10 @@ public class Login {
 	@org.hibernate.annotations.Type(type="true_false")
 	private boolean approval;
 	
-	@OneToOne(mappedBy="login")
+	@OneToOne(mappedBy="login", cascade = CascadeType.ALL)
 	private Transporter transporter;
 	
-	@OneToOne(mappedBy="login")
+	@OneToOne(mappedBy="login", cascade = CascadeType.ALL)
 	private Customer customer;
 	
 	
