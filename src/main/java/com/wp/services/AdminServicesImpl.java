@@ -78,4 +78,12 @@ public class AdminServicesImpl implements AdminServices {
 		return deals;
 	}
 
+	@Override
+	public String declineDeal(int dealId) {
+		
+		String response = adminDAO.declineDeal(dealId);
+				
+		return response;
+	}
+
 }

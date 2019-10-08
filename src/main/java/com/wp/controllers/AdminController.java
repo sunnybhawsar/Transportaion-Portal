@@ -8,6 +8,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +35,9 @@ public class AdminController {
 	@Autowired
 	private AdminServices adminServices;
 	
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	public List <Transporter> transporters;
 	public List <Vehicle> vehicles;
 	public List <Deal> deals;
@@ -40,6 +45,7 @@ public class AdminController {
 	public Transporter transporter;
 	
 // Admin Routes
+	
 
 		@RequestMapping("/admin/admTransporters")
 		public ModelAndView admTransporters()
@@ -179,18 +185,39 @@ public class AdminController {
 		
 			Login login = otherServices.getLoginDetails(loginId);
 			
-			//System.out.println(login);
-			
 			String response = adminServices.approveTransporter(login);
 			
-			//System.out.println(response);
+			String action = "";
+			String caption = "";
 			
-			transporters = transporterServices.getAllTransporters();
+			if(response.equals("Success"))
+			{
+				String to = transporter.getEmail();
+				String subject = "Account Activated - Transportation";
+				String message = "Your account has been successfully activated after checking your details and documents. \nNow you can Login to the portal using your registered credentials and can use the services. \n\nContact us for more information.";
+				
+				int status = sendEmail(to, subject, message);
+				
+				action = "Transporter Approved!";
+				if(status == 200)
+				{
+					caption = "Email has been sent to transporter!";
+				}
+				else
+				{
+					caption = "";
+				}
+			}
+			else
+			{
+				action="Something went wrong!";
+			}
 			
-			//System.out.println(transporters);
 			
-			ModelAndView modelAndView = new ModelAndView("admin/AdmTransporters");
-			modelAndView.addObject("transporters",transporters);
+			ModelAndView modelAndView = new ModelAndView("admin/AdmStatus");
+			modelAndView.addObject("action",action);
+			modelAndView.addObject("caption",caption);
+			modelAndView.addObject("nextView","admTransporters");
 			return modelAndView;
 			
 		}
@@ -208,18 +235,41 @@ public class AdminController {
 			Login login = otherServices.getLoginDetails(loginId);
 		
 			
-			//System.out.println(login);
+			
 			
 			String response = adminServices.declineTransporter(login);
 			
-			System.out.println(response);
+			String action = "";
+			String caption = "";
 			
-			transporters = transporterServices.getAllTransporters();
+			if(response.equals("Success"))
+			{
+				String to = transporter.getEmail();
+				String subject = "Account Deactivated - Transportation";
+				String message = "Your account has been deactivated due to some reasons. You can't Login to the portal using your registered credentials. \n\nContact us for more information.";
+				
+				int status = sendEmail(to, subject, message);
+				
+				action = "Transporter Account Deactivated!";
+				if(status == 200)
+				{
+					caption = "Email has been sent to transporter!";
+				}
+				else
+				{
+					caption = "";
+				}
+			}
+			else
+			{
+				action="Something went wrong!";
+			}
 			
-			//System.out.println(transporters);
 			
-			ModelAndView modelAndView = new ModelAndView("admin/AdmTransporters");
-			modelAndView.addObject("transporters",transporters);
+			ModelAndView modelAndView = new ModelAndView("admin/AdmStatus");
+			modelAndView.addObject("action",action);
+			modelAndView.addObject("caption",caption);
+			modelAndView.addObject("nextView","admTransporters");
 			return modelAndView;
 			
 		}
@@ -271,10 +321,9 @@ public class AdminController {
 					}
 					
 					String response = adminServices.approveVehicle(vehicle);
-					//System.out.println(response);
+			
 					
 					vehicles = adminServices.getAllVehicles();
-					//System.out.println(vehicles);
 					
 					ModelAndView modelAndView = new ModelAndView("admin/AdmVehicles");
 					modelAndView.addObject("vehicles",vehicles);
@@ -341,6 +390,90 @@ public class AdminController {
 					modelAndView.addObject("deal",deal);
 					return modelAndView;
 				
+				}
+				
+	// Decline Reasone for deal
+				
+				@RequestMapping("admin/declineReason")
+				public ModelAndView declineReason(@RequestParam("dealId") String dealId, @RequestParam("transEmail") String transEmail)
+				{
+					
+					ModelAndView modelAndView = new ModelAndView("admin/AdmDeclineDeal");
+					
+					modelAndView.addObject("dealId",dealId);
+					modelAndView.addObject("transEmail",transEmail);
+					
+					return modelAndView;
+				}
+				
+	// Declie a Deal
+				
+				@RequestMapping("/admin/declineDeal")
+				public ModelAndView admDeclineDecline(
+						@RequestParam("dealId") int dealId,
+						@RequestParam("reason") String reason,
+						@RequestParam("transEmail") String transEmail
+						)
+				{
+				
+					
+					String response = adminServices.declineDeal(dealId);
+					
+					String action = "";
+					String caption = "";
+					
+					if(response.equals("Success"))
+					{
+						String to = transEmail;
+						String subject = "Deal "+dealId+" Declined - Transportation";
+						String message = "Your Deal (Deal id = "+dealId+") has been declined! \n"+reason+" \n\nContact us for more information.";
+						
+						int status = sendEmail(to, subject, message);
+						
+						action = "Deal Declined!";
+						if(status == 200)
+						{
+							caption = "Email has been sent to transporter!";
+						}
+						else
+						{
+							caption = "";
+						}
+					}
+					else
+					{
+						action="Something went wrong!";
+					}
+					
+					
+					ModelAndView modelAndView = new ModelAndView("admin/AdmStatus");
+					modelAndView.addObject("action",action);
+					modelAndView.addObject("caption",caption);
+					modelAndView.addObject("nextView","admDeals");
+					return modelAndView;
+					
+				}
+				
+				
+	// Send Email
+				
+				public int sendEmail(String to, String subject, String message)
+				{
+					SimpleMailMessage mailMessage = new SimpleMailMessage();
+					
+					mailMessage.setTo(to);
+					
+					mailMessage.setSubject(subject);
+					
+					String header = "Hello,\n\n";
+					String footer = "\n\n\nThanks & Regards \nAdmin - Transportation Portal \nIndore, India (452010) \n\nDisclaimer: Feel free to reply!";
+					String text = header+message+footer;
+					
+					mailMessage.setText(text);
+					
+					mailSender.send(mailMessage);
+					
+					return 200;
 				}
 
 }

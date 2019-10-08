@@ -148,8 +148,6 @@ pre
                 More Details
               </button>
               </a>
-                &nbsp;
-              <button type="button" class="btn btn-danger"> Delete </button>
               </td>
           </tr>
           

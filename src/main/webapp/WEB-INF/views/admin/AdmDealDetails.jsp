@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin | Transporter Details</title>
+<title>Admin | Deal Details</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -259,11 +259,12 @@ pre
          	
 <!-- Actions -->        	
          	<div class="actionsDiv">
-         	 <a href=""> 
-              <button type="button"  class="btn btn-danger">      
-                Decline
-              </button>
-              </a>
+         	 <form action="declineReason" method="get"> 
+         	 <input type="hidden" name="dealId" value="${deal.dealId}" />
+         	 <input type="hidden" name="transEmail" value="${deal.transporter.email}" />
+         	 
+             <input type="submit"  class="btn btn-danger" style="float:right;" value="Decline Deal"/>      
+             </form>
          	</div>
               
          </div>

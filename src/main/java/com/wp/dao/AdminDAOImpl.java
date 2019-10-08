@@ -99,4 +99,26 @@ public class AdminDAOImpl implements AdminDAO {
 		return deals;
 	}
 
+
+	// Decline deal
+	
+	@Override
+	public String declineDeal(int dealId) {
+		
+		session = sessionFactory.openSession();
+		
+		transaction = session.beginTransaction();
+		
+		Deal deal = session.get(Deal.class,dealId);
+			
+		if(deal!=null)
+		session.delete(deal);
+		
+		transaction.commit();
+		
+		session.close();
+		
+		return "Success";
+	}
+
 }

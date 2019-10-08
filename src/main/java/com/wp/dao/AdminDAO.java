@@ -15,4 +15,6 @@ public interface AdminDAO {
 	public List<Vehicle> getAllVehicles();
 
 	public List<Deal> getAllDeals();
+	
+	public String declineDeal(int dealId);
 }
