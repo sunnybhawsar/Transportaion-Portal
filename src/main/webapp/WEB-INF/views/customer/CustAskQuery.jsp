@@ -174,7 +174,7 @@ pre
 		<%@include file="CustHeader.jsp" %>
 	</div>
 	
-	<a href="custQueries" style="margin-left:10%;">
+	<a href="custQueries" style="margin-left:3%;">
             	<button type="button" class="btn btn-info">Back</button>
     </a>	
 	

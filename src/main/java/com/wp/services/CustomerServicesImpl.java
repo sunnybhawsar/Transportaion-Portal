@@ -68,15 +68,43 @@ public class CustomerServicesImpl implements CustomerServices {
 	@Override
 	public Customer getCustomer(int id) {
 		
-		return null;
+		Customer customer = customerDAO.getCustomer(id);
+		
+		return customer;
 	}
 	
 // Update Customer
 
 	@Override
-	public String updateCustomer(Customer customer) {
+	public String updateCustomer(Customer customer, MultipartFile file) {
 		
-		return null;
+
+		String fileName= "img_"+customer.getName()+".jpg";
+		
+		try {
+			
+			byte b[] = file.getBytes();
+			
+			String directory = "/home/yuvi/Documents/workspace-spring-tool-suite-4-4.4.0.RELEASE/Transportation/assets/customer/images/";
+			
+			File obj = new File(directory+fileName);
+			
+			@SuppressWarnings("resource")
+			FileOutputStream fileOutputStream = new FileOutputStream(obj);
+			
+			fileOutputStream.write(b);
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		customer.setAadhaar(fileName);
+		
+		String response = customerDAO.addCustomer(customer);
+		
+		return response;
 	}
 
 

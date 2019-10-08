@@ -246,7 +246,7 @@ pre
 	         	</select>
 	         	
 	  
-	              <input type="submit"  class="btn btn-info" style="float:left; value="GiveRating" />      
+	              <input type="submit"  class="btn btn-info" style="float:left;" value="Give Rating" />      
 	               	
 	             
             

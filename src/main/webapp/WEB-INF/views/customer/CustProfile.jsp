@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
 	<%@page isELIgnored="false" %>
-     
+	
+	<%@taglib uri="http://www.springframework.org/tags/form"  prefix="frm" %> 
+	    
   <%
   if(request.getSession().getAttribute("id")==null)
   	response.sendRedirect("sessionExpired");
@@ -105,7 +109,22 @@ pre
 
 .bodyDiv h3
 {
-	color:green;'
+	color:green;
+}
+
+table
+{
+	width:60%;
+}
+
+.lbl
+{
+	padding-top:9px;
+}
+
+.txtbox
+{
+	width:55%;
 }
 </style>
 
@@ -119,7 +138,79 @@ pre
 	</div>
 	
 	<div class="bodyDiv">
-		<h3>Profile</h3>
+	
+		<h3 align="center">My Profile</h3>
+		
+		
+		      <div class="contt" style="">
+			<br/>
+			
+			<frm:form action="updateProfile" modelAttribute="customer" method="post" enctype="multipart/form-data" class="form-group">
+			<table>
+				<tr>
+					<td><p> Customer Id : </p><td>
+					<td><p>${customer.customerId}</p></td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p >Name : </p><td>
+					<td>
+					<frm:input type="text" path="name"  class="txtbox" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p > Email :  </p><td>
+					<td>
+					<frm:input type="text" path="email" class="txtbox" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p > Mobile : </p><td>
+					<td>
+					<frm:input type="number" path="mobile" class="txtbox" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p > City : </p><td>
+					<td>
+					<frm:select type="text" path="city" items="${cities}" style="height:28px;" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td  class="lbl"><p>  Aadhaar Card :</p><td>
+					<td>
+					<br/>
+					<p>
+					<a href="" target="_blank">
+						${customer.aadhaar}
+					</a> <br/>
+					
+					Change <input type="file" name="picture" style="margin-top:10px;" />
+					
+					</p></td>
+				</tr>
+				
+				
+			</table>
+            	
+            	<br/>
+            	
+            	<input type="submit" class="btn btn-success"  value="Update Profile" style="float:left;" />
+            	
+           
+            	
+            	<p style="color: #ed5c2c; float:left; margin:8px; margin-left:3%;">${status}</p>
+            	
+            	</frm:form>
+            	
+            
+			  
+              </div>
+		
 	</div>
 
 </div>

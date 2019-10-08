@@ -42,13 +42,29 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public Customer getCustomer(int id) {
 	
-		return null;
+		session = sessionFactory.openSession();
+		
+		Customer customer = session.get(Customer.class, id);
+	
+		session.close();
+		
+		return customer;
 	}
 
 	@Override
 	public String updateCustomer(Customer customer) {
 	
-		return null;
+		session = sessionFactory.openSession();
+		
+		transaction = session.beginTransaction();
+		
+		System.out.println("updateprofile ----------"+customer.getCustomerId());
+		
+		session.update(customer);
+		
+		transaction.commit();
+		
+		return "Success";
 	}
 
 	

@@ -162,9 +162,7 @@ pre
                 More Details
               </button>
               </a>
-                &nbsp;
-              <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#viewApplicationModalLong">Delete</button>
-              </td>
+             </td>
           </tr>
           
           </c:forEach>

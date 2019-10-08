@@ -108,6 +108,11 @@ pre
 {
 	color:green;'
 }
+
+table
+{
+	width:40%;
+}
 </style>
 
 </head>
@@ -119,12 +124,12 @@ pre
 		<%@include file="TransHeader.jsp" %>
 	</div>
 	
+	<a href="transVehicles" style="margin-left:3%;">
+            	<button type="button" class="btn btn-info" >Back</button>
+    </a>
+	
 	<div class="bodyDiv">
 	
-		
-				<a href="transVehicles">
-            	<button type="button" class="btn btn-info" >Back</button>
-            	</a>
 	
 		<h3 align="center">Vehicle Details</h3>
 		
@@ -172,13 +177,13 @@ pre
             	
               <div style="margin-left:37%;">
               	<a href="" style="float:left;">
-            	<button type="button" class="btn btn-warning" >Edit Details</button>
+            	<button type="button" class="btn btn-warning" >Update Papers</button>
             	</a>
             	
             	&nbsp;
             	
             	<a href="" style="float:left; margin-left:20px;">
-            	<button type="button" class="btn btn-danger" >Delete Vehicle</button>
+            	<button type="button" class="btn btn-danger" >Unregister Vehicle</button>
             	</a>
             	
 			  </div>

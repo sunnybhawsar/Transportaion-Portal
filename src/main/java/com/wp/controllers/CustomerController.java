@@ -35,15 +35,33 @@ public class CustomerController {
 	
 	public List <Query> queries;
 	
+	public Customer customer;
+	public List <String> cities;
+	
 	
 	// Routes
 	
 	
 	@RequestMapping("/customer/custProfile")
 	
-	public String custProfile()
+	public ModelAndView custProfile(@SessionAttribute("id") int loginId)
 	{
-		return "customer/CustProfile";
+		int customerId = otherServices.getLoginDetails(loginId).getCustomer().getCustomerId();
+		
+		customer = customerServices.getCustomer(customerId);
+		
+		cities = new ArrayList<String>();
+		cities.add("Indore");
+		cities.add("Ujjain");
+		cities.add("Dewas");
+		cities.add("Rau");
+		
+		ModelAndView modelAndView = new ModelAndView("customer/CustProfile");
+		
+		modelAndView.addObject("customer",customer);
+		modelAndView.addObject("cities",cities);
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping("/customer/custExploreDeals")
@@ -209,6 +227,38 @@ public class CustomerController {
 		
 		return modelAndView;
 	}
+	
+	
+	// Update Profile
+	
+	@RequestMapping("customer/updateProfile")
+	public ModelAndView updateProfile(@ModelAttribute("customer") Customer customer, @RequestParam("picture") MultipartFile file)
+	{
+		customer.setCustomerId(this.customer.getCustomerId());
+		
+	//	String response = customerServices.updateCustomer(customer, file);
+		String response = "Success";
+		
+		String status="";
+		
+		if(response.equals("Success"))
+		{
+			status = "Profile Updated!";
+		}
+		else
+		{
+			status = "Try again later!";
+		}
+	
+		ModelAndView modelAndView = new ModelAndView("customer/CustProfile");
+		
+		modelAndView.addObject("customer",customer);
+		modelAndView.addObject("cities",cities);
+		modelAndView.addObject("status",status);
+		
+		return modelAndView;
+	}
+	
 
 
 }

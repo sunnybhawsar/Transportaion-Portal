@@ -15,7 +15,7 @@ public interface CustomerServices {
 	
 	public Customer getCustomer(int id);
 	
-	public String updateCustomer(Customer customer);
+	public String updateCustomer(Customer customer, MultipartFile file);
 	
 	public List<Deal> getAllDeals();
 	
