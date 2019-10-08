@@ -24,9 +24,8 @@ public class Transporter {
 	private String email;
 	private String mobile;
 	private String address;
-	private String state;
 	private String city;
-	private String image;
+	private String pancard;
 	private String idProof;
 	private int rating;
 	private int ratedBy;
@@ -86,14 +85,6 @@ public class Transporter {
 		this.address = address;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
 	public String getCity() {
 		return city;
 	}
@@ -102,12 +93,13 @@ public class Transporter {
 		this.city = city;
 	}
 
-	public String getImage() {
-		return image;
+
+	public String getPancard() {
+		return pancard;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setPancard(String pancard) {
+		this.pancard = pancard;
 	}
 
 	public String getIdProof() {

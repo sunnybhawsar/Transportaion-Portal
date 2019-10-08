@@ -51,7 +51,7 @@ public class CustomerServicesImpl implements CustomerServices {
 			e.printStackTrace();
 		}
 		
-		customer.setImage(fileName);
+		customer.setAadhaar(fileName);
 		
 		Customer customerWithLogin = customer;
 		customerWithLogin.setLogin(new Login(loginId));

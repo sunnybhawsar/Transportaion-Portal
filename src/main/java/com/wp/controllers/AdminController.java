@@ -1,6 +1,11 @@
 package com.wp.controllers;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -96,6 +101,70 @@ public class AdminController {
 	
 			modelAndView.addObject("transporter",transporter);
 			return modelAndView;
+		}
+		
+		
+	// See Documents
+		
+		@RequestMapping("/admin/openDocument")
+		public void openImage(@RequestParam("fileName") String fileName, HttpServletResponse response) throws IOException
+		{
+			
+			String directory = "/home/yuvi/Documents/workspace-spring-tool-suite-4-4.4.0.RELEASE/Transportation/assets/";
+			
+			String folder="";
+			
+			if((fileName.substring(fileName.length()-3)).equals("pdf"))
+			
+				folder = "transporter/documents/";
+			
+			else
+				folder = "transporter/images/";
+				
+			
+			
+			FileInputStream fileInputStream = new FileInputStream(directory+folder+fileName);
+			
+			byte bytes[] = new byte[fileInputStream.available()];
+			
+			fileInputStream.read(bytes);
+			
+			ServletOutputStream out = response.getOutputStream();
+			
+			out.write(bytes);
+			
+			fileInputStream.close();
+		}
+		
+		
+		@RequestMapping("/admin/vehicleDocument")
+		public void vehicleDocument(@RequestParam("fileName") String fileName, HttpServletResponse response) throws IOException
+		{
+			
+			String directory = "/home/yuvi/Documents/workspace-spring-tool-suite-4-4.4.0.RELEASE/Transportation/assets/";
+			
+			String folder="";
+			
+			if((fileName.substring(0,3)).equals("fit"))
+			
+				folder = "transporter/vehicle/fitness/";
+			
+			else
+				folder = "transporter/vehicle/insurance/";
+				
+			
+			
+			FileInputStream fileInputStream = new FileInputStream(directory+folder+fileName);
+			
+			byte bytes[] = new byte[fileInputStream.available()];
+			
+			fileInputStream.read(bytes);
+			
+			ServletOutputStream out = response.getOutputStream();
+			
+			out.write(bytes);
+			
+			fileInputStream.close();
 		}
 		
 		

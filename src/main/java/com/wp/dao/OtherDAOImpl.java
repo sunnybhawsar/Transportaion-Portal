@@ -1,6 +1,8 @@
 package com.wp.dao;
 
 import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -72,19 +74,30 @@ public class OtherDAOImpl implements OtherDAO {
 		 * System.out.println(loginDetails);
 		 */
 		
+		Login loginDetails=null;
+		
+		
 		String hql = "from Login where username='"+login.getUsername()+"' ";
 		
-		@SuppressWarnings("unchecked")
-		List <Login> list = session.createQuery(hql).list();
+		Query query = session.createQuery(hql);
 		
-		Login loginDetails;
+		
+		if(query!=null)
+		{
+		@SuppressWarnings("unchecked")
+		List <Login> list = query.list();
 		
 		if(list!=null)
-			loginDetails = list.get(0);
-		
+		{
+			if(list.size()!=0)
+				loginDetails = list.get(0);
+			
+			else
+				loginDetails = null;
+		}
 		else
 			loginDetails = null;
-		
+		}
 		
 		return loginDetails;
 	}

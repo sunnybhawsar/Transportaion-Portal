@@ -159,23 +159,22 @@ pre
        
       		 <tr>
               
-               <td><p>${transporter.getTransporterId()}</p></td>
-              <td><p>${transporter.getName()}</p></td>
-              <td><p>${transporter.getEmail()}</p></td>
-              <td><p>${transporter.getMobile()}</p></td>
+               <td><p>${transporter.transporterId}</p></td>
+              <td><p>${transporter.name}</p></td>
+              <td><p>${transporter.email}</p></td>
+              <td><p>${transporter.mobile}</p></td>
                <td><p style="color:#ED5C2C;">${transporter.rating}</p></td>
-              <td><p>${transporter.getLogin().isApproval()}</p></td>
+              <td><p>${transporter.login.approval}</p></td>
               
               <td>
                
-              <a href="fetchTransporter?id=${transporter.getTransporterId()}"> 
+              <a href="fetchTransporter?id=${transporter.transporterId}"> 
               <button type="button"  class="btn btn-info">      
                 More Details
               </button>
               </a>
-                &nbsp;
-              <button type="button" class="btn btn-danger"  data-toggle="modal" data-target="#viewApplicationModalLong">Delete</button>
-              </td>
+              
+             </td>
           </tr>
           
           </c:forEach>
@@ -184,76 +183,6 @@ pre
         </div>
         
       </div>
-
-      <!-- Modal -->
-      <div class="modal fade" id="viewApplicationModalLong" tabindex="-1" role="dialog" aria-labelledby="viewApplicationtionModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title" id="viewApplicationModalLongTitle">Details</h4>
-              <button  type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                
-              <div class="contt" style="">
-
-              <p>
-               <b> Name : </b>
-                ${transporters.get(0).getName()}
-              </p>
-               
-              <p>
-               <b> Email : </b>
-               ${transporters.get(0).getEmail()}
-              </p>
-               
-              <p>
-               <b> Mobile no : </b>
-                ${transporters.get(0).getMobile()}
-              </p>
-               
-              <p>
-               <b> Address : </b>
-                ${transporters.get(0).getAddress()}
-              </p>  
-
-              <p>
-               <b> City : </b>
-                ${transporters.get(0).getCity()}  
-              </p>
-
-              <p>
-               <b> Photo : </b>
-               ${transporters.get(0).getImage()} 
-              </p> 
-              
-              <p>
-               <b> Id Proof : </b>
-               ${transporters.get(0).getIdProof()} 
-              </p> 
-              
-               <p>
-               <b> Approval : </b>
-               ${transporters.get(0).getLogin().isApproval()}
-              </p> 
-
-              </div>
-            </div>
-            <div class="modal-footer">
-            	
-            	<a href="">
-            	<button type="button" class="btn btn-warning" data-dismiss="modal">Approve Request </button>
-            	</a>
-            </div>
-          </div>
-        </div>
-		
-	</div>
-	
-	<!-- End of Modal -->
-
 	
 </div>
 	

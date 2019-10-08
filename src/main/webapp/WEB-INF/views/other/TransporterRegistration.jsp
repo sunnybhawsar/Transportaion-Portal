@@ -85,12 +85,7 @@
 				<p class="pAddress">Enter Address</p>
 				<textarea id="address" name="address" class="form-control txtarea" placeholder="Enter address" > 
 				</textarea> <br/> 
-				
-				<select class="form-control" name="state">
-					<option> State </option>
-					<option> MP </option>
-				</select>  <br/>
-				
+								
 				
 				<select class="form-control" name="city">
 					<option>City</option>
@@ -116,11 +111,11 @@
 				
 				<br/>
 			
-				<p class="files">Your Image (JPG)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<p class="files">Your Pan Card (JPG)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="file" id="picture" name="picture" class="fileInput" /> </p><br/> 
 				
 				
-				<p class="files">Your Id Proof (PDF/JPG) &nbsp;
+				<p class="files">Your Id Proof (PDF) &nbsp;
 				<input type="file" id="identityProof" name="identityProof" class="" /> </p><br/> 
 				
 				

@@ -18,9 +18,8 @@ public class Customer {
 	private String name;
 	private String email;
 	private	String mobile;
-	private String state;
 	private String city;
-	private String image;
+	private String aadhaar;
 	
 	@OneToOne
 	private Login login;
@@ -60,14 +59,6 @@ public class Customer {
 		this.mobile = mobile;
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
 	public String getCity() {
 		return city;
 	}
@@ -76,12 +67,13 @@ public class Customer {
 		this.city = city;
 	}
 
-	public String getImage() {
-		return image;
+
+	public String getAadhaar() {
+		return aadhaar;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setAadhaar(String aadhaar) {
+		this.aadhaar = aadhaar;
 	}
 
 	public Login getLogin() {
@@ -94,19 +86,6 @@ public class Customer {
 
 	
 	// Constructors
-	
-	public Customer(int customerId, String name, String email, String mobile, String state, String city, String image,
-			Login login) {
-		super();
-		this.customerId = customerId;
-		this.name = name;
-		this.email = email;
-		this.mobile = mobile;
-		this.state = state;
-		this.city = city;
-		this.image = image;
-		this.login = login;
-	}
 
 	public Customer(int customerId) {
 		super();

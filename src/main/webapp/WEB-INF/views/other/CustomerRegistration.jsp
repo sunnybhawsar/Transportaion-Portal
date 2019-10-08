@@ -82,12 +82,6 @@
 				<input type="number" id="mobile" name="mobile" class="form-control txtbox" placeholder="Enter mobile number" required="required"/> <br/> 
  
 				
-				<select class="form-control" name="state">
-					<option> State </option>
-					<option> MP </option>
-				</select>  <br/>
-				
-				
 				<select class="form-control" name="city">
 					<option> City </option>
 					<option> Indore </option>
@@ -105,12 +99,12 @@
 			
 				
 				<p class="lbl">
-			 Profile Picture
+			 Customer Identity
 			</p>
 
 			<br/>
 
-				<p class="files">Your Image (JPG)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<p class="files">Upload Aadhaar Card (JPG)
 				<input type="file" id="picture" name="picture" class="fileInput" /> </p><br/> 
 				
 				

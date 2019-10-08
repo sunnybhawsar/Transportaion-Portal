@@ -103,6 +103,7 @@ table
 {
 	width:40%;
 	margin-left:5%;
+	float:left;
 }
 
 .lbl
@@ -138,33 +139,29 @@ table
 			<table>
 				<tr>
 					<td><p class="lbl"> Name : </p><td>
-					<td><p>${transporter.getName()}</p></td>
+					<td><p>${transporter.name}</p></td>
 				</tr>
 				
 				<tr>
 					<td><p class="lbl">Email : </p><td>
-					<td><p> ${transporter.getEmail()}</p></td>
+					<td><p> ${transporter.email}</p></td>
 				</tr>
 				
 				<tr>
 					<td><p class="lbl"> Mobile No.  </p><td>
-					<td><p>${transporter.getMobile()}</p></td>
+					<td><p>${transporter.mobile}</p></td>
 				</tr>
 				
 				<tr>
 					<td><p class="lbl"> Address : </p><td>
-					<td><p>${transporter.getAddress()}</p></td>
+					<td><p>${transporter.address}</p></td>
 				</tr>
 				
 				<tr>
 					<td><p class="lbl">  City :</p><td>
-					<td><p>${transporter.getCity()}  </p></td>
+					<td><p>${transporter.city}  </p></td>
 				</tr>
 				
-				<tr>
-					<td><p class="lbl"> Id Proof : </p> <td>
-					<td><p>${transporter.getIdProof()} </p></td>
-				</tr>
 				
 				<tr>
 					<td><p class="lbl"> Rating : </p> <td>
@@ -173,19 +170,46 @@ table
 				
 				<tr>
 					<td><p class="lbl" style="color:maroon;">  Approval : </p><td>
-					<td><p style="color:maroon;">${transporter.getLogin().isApproval()}</p></td>
+					<td><p style="color:maroon;">${transporter.login.approval}</p></td>
 				</tr>
 				
 			</table>
+			
+			
+			<table style="margin-top:5%; width:16%;">
+			
+         		<caption style="margin-left:5%;">
+         			Uploaded Documents
+         		</caption>
+			
+			<tr>
+					<td><p class="lbl"> Pan Card : </p> <td>
+					<td><p>
+					<a href="openDocument?fileName=${transporter.pancard}" target="_blank">
+						VIEW
+					</a>
+					</p></td>
+				</tr>
+				
+				<tr>
+					<td><p class="lbl"> Id Proof : </p> <td>
+					<td><p>
+					<a href="openDocument?fileName=${transporter.idProof}" target="_blank">
+					 	VIEW 
+					</a>
+					</p></td>
+				</tr>
+			
+			</table>
             	
-              <div style="margin-left:37%;">
-              	<a href="approveTransporter?id=${transporter.getTransporterId()}" style="float:left;">
+              <div style="margin-left:37%; clear:both;">
+              	<a href="approveTransporter?id=${transporter.transporterId}" style="float:left;">
             	<button type="button" class="btn btn-warning" >Approve Request </button>
             	</a>
             	
             	&nbsp;
             	
-            	<a href="declineTransporter?id=${transporter.getTransporterId()}" style="float:left; margin-left:20px;">
+            	<a href="declineTransporter?id=${transporter.transporterId}" style="float:left; margin-left:20px;">
             	<button type="button" class="btn btn-danger" >Decline </button>
             	</a>
             	

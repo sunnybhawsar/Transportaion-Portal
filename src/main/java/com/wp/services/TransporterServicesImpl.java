@@ -65,7 +65,7 @@ public class TransporterServicesImpl implements TransporterServices {
 			e.printStackTrace();
 		}
 		
-		transporter.setImage(img);
+		transporter.setPancard(img);
 		
 		transporter.setIdProof(doc);
 		
