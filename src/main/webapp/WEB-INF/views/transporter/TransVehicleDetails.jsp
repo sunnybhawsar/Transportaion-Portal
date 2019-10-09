@@ -160,12 +160,20 @@ table
 				
 				<tr>
 					<td><p class="lbl">  Insurance Paper :</p><td>
-					<td><p>${vehicle.insurance}  </p></td>
+					<td>
+					<a href="vehicleFile?fileName=${vehicle.insurance}" target="_blank">
+						View File
+					</a>
+					</td>
 				</tr>
 				
 				<tr>
-					<td><p class="lbl"> Id Proof : </p> <td>
-					<td><p>${vehicle.fitness} </p></td>
+					<td><p class="lbl"> Fitness Paper : </p> <td>
+					<td>
+					<a href="vehicleFile?fileName=${vehicle.fitness}" target="_blank">
+						View File
+					</a>
+					</td>
 				</tr>
 				
 				<tr>

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
 	<%@page isELIgnored="false" %>
+	
+	<%@taglib uri="http://www.springframework.org/tags/form"  prefix="frm" %> 
+	  
      
   <%
   if(request.getSession().getAttribute("id")==null)
@@ -108,6 +113,21 @@ pre
 {
 	color:green;'
 }
+
+table
+{
+	width:60%;
+}
+
+.lbl
+{
+	padding-top:9px;
+}
+
+.txtbox
+{
+	width:55%;
+}
 </style>
 
 </head>
@@ -120,7 +140,105 @@ pre
 	</div>
 	
 	<div class="bodyDiv">
-		<h3>Profile</h3>
+	
+		<h3 align="center">My Profile</h3>
+		
+		
+		      <div class="contt" style="">
+			<br/>
+			
+			<frm:form action="updateProfile" modelAttribute="transporter" method="post" enctype="multipart/form-data" class="form-group">
+			<table>
+				<tr>
+					<td><p> Transporter Id : </p><td>
+					<td><p>${transporter.transporterId}</p></td>
+				</tr>
+				
+				<tr>
+					<td><p> Rating : </p><td>
+					<td><p style="color:#ed5c2c;">${transporter.rating}</p></td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p >Name : </p><td>
+					<td>
+					<frm:input path="name"  class="txtbox" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p > Email :  </p><td>
+					<td>
+					<frm:input  path="email" class="txtbox" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p > Mobile : </p><td>
+					<td>
+					<frm:input  path="mobile" class="txtbox" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p > Address : </p><td>
+					<td>
+					<frm:textarea  path="address" items="${transporter.address}" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="lbl"><p > City : </p><td>
+					<td>
+					<frm:select  path="city" items="${cities}" style="height:28px;" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td  class="lbl"><p>  Pan Card :</p><td>
+					<td>
+					<br/>
+					<p>
+					<a href="viewFile?fileName=${transporter.pancard}" target="_blank">
+						View Pancard
+					</a> <br/>
+					
+					CHANGE <input type="file" name="picture" style="margin-top:10px;" />
+					
+					</p></td>
+				</tr>
+				
+				<tr>
+					<td  class="lbl"><p>  Id proof :</p><td>
+					<td>
+					<br/>
+					<p>
+					<a href="viewFile?fileName=${transporter.idProof}" target="_blank">
+						View Id Proof
+					</a> <br/>
+					
+					CHANGE <input type="file" name="identityProof" style="margin-top:10px;" />
+					
+					</p></td>
+				</tr>
+				
+				
+			</table>
+            	
+            	<br/>
+            	
+            	<input type="submit" class="btn btn-success"  value="Update Profile" style="float:left;" />
+            	
+           
+            	
+            	<p style="color: #ed5c2c; float:left; margin:8px; margin-left:3%;">${status}</p>
+            	
+            	</frm:form>
+            	
+            
+			  
+              </div>
+		
 	</div>
 
 </div>

@@ -1,7 +1,12 @@
 package com.wp.controllers;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +17,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.wp.models.Customer;
 import com.wp.models.Deal;
 import com.wp.models.Login;
 import com.wp.models.Query;
@@ -35,13 +41,31 @@ public class TransporterController {
 	
 	public List <Query> queries;
 	
+	public Transporter transporter;
+	public List <String> cities;
+	
 	
 // Routes
 	
 	@RequestMapping("/transporter/transProfile")
-	public String transProfile()
+	public ModelAndView transProfile(@SessionAttribute("id") int loginId)
 	{
-		return "transporter/TransProfile";
+		int transId = otherServices.getLoginDetails(loginId).getTransporter().getTransporterId();
+		
+		transporter = transporterServices.getTransporter(transId);
+		
+		cities = new ArrayList<String>();
+		cities.add("Indore");
+		cities.add("Ujjain");
+		cities.add("Dewas");
+		cities.add("Rau");
+		
+		ModelAndView modelAndView = new ModelAndView("transporter/TransProfile");
+		
+		modelAndView.addObject("transporter",transporter);
+		modelAndView.addObject("cities",cities);
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping("/transporter/transVehicles")
@@ -196,6 +220,69 @@ public class TransporterController {
 		
 		return modelAndView;
 	}
+	
+
+	
+	// Open File
+	
+		@RequestMapping("/transporter/viewFile")
+		public void viewFile(@RequestParam("fileName") String fileName, HttpServletResponse response) throws IOException
+		{
+			
+			String directory = "/home/yuvi/Documents/workspace-spring-tool-suite-4-4.4.0.RELEASE/Transportation/assets/";
+			
+			String folder="";
+			
+			if((fileName.substring(fileName.length()-3)).equals("pdf"))
+			
+				folder = "transporter/documents/";
+			
+			else
+				folder = "transporter/images/";
+				
+		
+			FileInputStream fileInputStream = new FileInputStream(directory+folder+fileName);
+			
+			byte bytes[] = new byte[fileInputStream.available()];
+			
+			fileInputStream.read(bytes);
+			
+			ServletOutputStream out = response.getOutputStream();
+			
+			out.write(bytes);
+			
+			fileInputStream.close();
+		}
+		
+		
+		@RequestMapping("/transporter/vehicleFile")
+		public void vehicleFile(@RequestParam("fileName") String fileName, HttpServletResponse response) throws IOException
+		{
+			
+			String directory = "/home/yuvi/Documents/workspace-spring-tool-suite-4-4.4.0.RELEASE/Transportation/assets/";
+			
+			String folder="";
+			
+			if((fileName.substring(0,3)).equals("fit"))
+			
+				folder = "transporter/vehicle/fitness/";
+			
+			else
+				folder = "transporter/vehicle/insurance/";
+				
+		
+			FileInputStream fileInputStream = new FileInputStream(directory+folder+fileName);
+			
+			byte bytes[] = new byte[fileInputStream.available()];
+			
+			fileInputStream.read(bytes);
+			
+			ServletOutputStream out = response.getOutputStream();
+			
+			out.write(bytes);
+			
+			fileInputStream.close();
+		}
 	
 	
 //  Add new Vehicle
@@ -394,6 +481,42 @@ public class TransporterController {
 				
 				ModelAndView modelAndView = new ModelAndView("transporter/TransQueryReply");
 				
+				modelAndView.addObject("status",status);
+				
+				return modelAndView;
+			}
+			
+			
+	// Update Profile
+			
+			@RequestMapping("transporter/updateProfile")
+			public ModelAndView updateProfile(
+					@ModelAttribute("transporter") Transporter transporter,
+					@RequestParam("picture") MultipartFile picture,
+					@RequestParam("identityProof") MultipartFile identityProof)
+			{
+				
+				transporter.setTransporterId(this.transporter.getTransporterId());
+				transporter.setLogin(new Login(this.transporter.getLogin().getLoginId()));
+				
+				//String response = transporterServices.updateTransporter(transporter, file, identityProof);
+				String response = "Success";
+				
+				String status="";
+				
+				if(response.equals("Success"))
+				{
+					status = "Profile Updated!";
+				}
+				else
+				{
+					status = "Try again later!";
+				}
+			
+				ModelAndView modelAndView = new ModelAndView("transporter/TransProfile");
+				
+				modelAndView.addObject("transporter",transporter);
+				modelAndView.addObject("cities",cities);
 				modelAndView.addObject("status",status);
 				
 				return modelAndView;

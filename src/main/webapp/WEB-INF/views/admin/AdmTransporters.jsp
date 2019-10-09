@@ -139,7 +139,7 @@ pre
 	
 	<div class="bodyDiv">
 	
-		<h3>TRANSPORTERS LIST</h3>
+		<h3>Transporter List</h3>
 		<br>
 		
 		<div class="table-responsive-md">

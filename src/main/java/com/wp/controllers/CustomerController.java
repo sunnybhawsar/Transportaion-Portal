@@ -55,8 +55,6 @@ public class CustomerController {
 		
 		customer = customerServices.getCustomer(customerId);
 		
-	//	System.out.println("control ------ "+customer.getCustomerId());
-		
 		cities = new ArrayList<String>();
 		cities.add("Indore");
 		cities.add("Ujjain");

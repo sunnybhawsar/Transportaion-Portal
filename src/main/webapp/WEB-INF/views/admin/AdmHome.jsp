@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
     <%@page isELIgnored="false" %>
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
       
   <%
   if(request.getSession().getAttribute("id")==null)
@@ -53,7 +55,7 @@ pre
 
 .first
 {
-	margin-left:9%;
+	margin-left:28%;
 }
 
 
@@ -88,6 +90,15 @@ pre
 	padding:0px;
 }
 
+.bodyDiv
+{
+	margin-left:3%;
+	align-content: center;
+	align-items: center;
+	align-self: center;
+	padding:5%;
+}
+
 .logo
 {
 	color:black;
@@ -100,6 +111,20 @@ pre
 	color:blue;
 	text-decoration:none;
 }
+
+.box
+{
+	height: 200px;
+	width:40%;
+	margin-left:30%;
+}
+
+.img
+{
+	height:50%;
+	width:25%;
+	margin-left:35%;
+}
 </style>
 
 </head>
@@ -109,7 +134,27 @@ pre
 	
 	<%@include file="AdmHeader.jsp" %>
 		
-		<p>Hello, ${user}  &nbsp;<b>${id}</b></p> 
+		<div class="bodyDiv">
+		
+		<br/>
+		
+		<h1 align="center" style="color:grey;">
+		Welcome To Portal
+		</h1>
+		
+		<br/>
+	
+					<div class="box">
+						
+						<img src="<c:url value="/images/transLogo.png"/>" class="img" />
+						<br/><br/>
+						<h4 align="center" style="color:#ed5c2c;">
+						Hello, ${user} ! 
+						</h4>
+					</div>
+				
+		
+	</div> 
 
 
 	</div>

@@ -5,7 +5,7 @@
 	
 		<div class="col-lg-6">
 			<h2 style="float:left;">
-			<a href="AdmHome" class="logo">Welcome Admin</a>
+			<a href="AdmHome" class="logo">Home</a>
 			</h2>
 		</div>
 		
@@ -16,7 +16,7 @@
 		
 		<a href="admVehicles" class="menuItems links">Vehicles</a>
 		
-		<a href="admCustomers" class="menuItems links">Customers</a>
+		<!-- <a href="admCustomers" class="menuItems links">Customers</a> -->
 		
 		<a href="admDeals" class="menuItems links">Explore Deals</a>
 		
