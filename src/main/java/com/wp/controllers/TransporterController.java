@@ -65,8 +65,7 @@ public class TransporterController {
 		 */
 		 
 		  
-		  vehicles  = transporterServices.getAllVehicles(transId);
-		 // System.out.println(vehicles);
+		vehicles  = transporterServices.getAllVehicles(transId);
 		
 		ModelAndView modelAndView = new ModelAndView("transporter/TransVehicles");
 		modelAndView.addObject("vehicles",vehicles);
@@ -430,5 +429,63 @@ public class TransporterController {
 				
 				return modelAndView;
 			}	
+			
+			
+		// Delete Vehicle
+			
+						@RequestMapping("transporter/deleteVehicle")
+						public ModelAndView deleteVehicle(@RequestParam("regNo") String regNo, @SessionAttribute("id") int loginId)
+						{
+							String res = transporterServices.deleteVehicle(regNo);
+							
+							String status="";
+							if(res.equals("Success"))
+							{
+								status = "Vehicle Deleted!";
+							}
+							else
+							{
+								status = "Try again later!";
+							}
+							
+
+							int transId = otherServices.getLoginDetails(loginId).getTransporter().getTransporterId();
+							
+							vehicles  = transporterServices.getAllVehicles(transId);
+							
+							ModelAndView modelAndView = new ModelAndView("transporter/TransVehicles");
+							modelAndView.addObject("vehicles",vehicles);
+							modelAndView.addObject("status",status);
+							return modelAndView;
+						}	
+		
+						
+						@RequestMapping("transporter/deleteDeal")
+						public ModelAndView deleteDeal(@RequestParam("dealId") int dealId, @SessionAttribute("id") int loginId)
+						{
+							String res = transporterServices.deleteDeal(dealId);
+							
+							String status="";
+							if(res.equals("Success"))
+							{
+								status = "Deal Deleted!";
+							}
+							else
+							{
+								status = "Try again later!";
+							}
+							
+
+							int transId = transporterServices.getTransporterId(loginId);
+							  
+							deals  = transporterServices.getAllDeals(transId);
+							
+							ModelAndView modelAndView = new ModelAndView("transporter/TransDeals");
+							
+							modelAndView.addObject("deals",deals);
+							modelAndView.addObject("status",status);
+							
+							return modelAndView;
+						}	
 		
 }

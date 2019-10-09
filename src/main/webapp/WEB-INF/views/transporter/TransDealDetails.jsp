@@ -207,7 +207,7 @@ table
             	
             	&nbsp;
             	
-            	<a href="" style="float:left; margin-left:20px;">
+            	<a href="deleteDeal?dealId=${deal.dealId}" style="float:left; margin-left:20px;">
             	<button type="button" class="btn btn-danger" >Delete Deal</button>
             	</a>
             	

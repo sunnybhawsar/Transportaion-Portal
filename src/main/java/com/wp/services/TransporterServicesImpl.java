@@ -268,6 +268,25 @@ public class TransporterServicesImpl implements TransporterServices {
 		return res;
 	}
 
+// Delete Vehicle
+	
+	@Override
+	public String deleteVehicle(String regNo) {
+		
+		String res = transporterDAO.deleteVehicle(regNo);
+		
+		return res;
+	}
+
+
+	@Override
+	public String deleteDeal(int dealId) {
+		
+		String res = transporterDAO.deleteDeal(dealId);
+		
+		return res;
+	}
+
 
 
 }

@@ -278,6 +278,43 @@ public class TransporterDAOImpl implements TransporterDAO {
 		
 		return "Success";
 	}
+	
+// Delete Vehicle
+	
+	@Override
+	public String deleteVehicle(String regNo) {
+
+		session = sessionFactory.openSession();
+		
+		Vehicle vehicle = session.get(Vehicle.class, regNo);
+		
+		transaction = session.beginTransaction();
+		
+		session.delete(vehicle);
+		
+		transaction.commit();
+		
+		return "Success";
+	}
+
+	
+// Delete Deal
+	
+	@Override
+	public String deleteDeal(int dealId) {
+		
+		session = sessionFactory.openSession();
+		
+		Deal deal = session.get(Deal.class, dealId);
+		
+		transaction = session.beginTransaction();
+		
+		session.delete(deal);
+		
+		transaction.commit();
+		
+		return "Success";
+	}
 
 	
 

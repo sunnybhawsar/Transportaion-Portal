@@ -22,10 +22,12 @@ public interface TransporterDAO {
 	
 	public String saveVehicle(Vehicle vehicle);
 	public List <Vehicle> getAllVehicles(int transId);
+	public String deleteVehicle(String regNo);
 	
 	public String saveDeal(Deal deal);
 	public List <Deal> getAllDeals(int transId);
 	public Deal fetchDeal(int dealId);
+	public String deleteDeal(int dealId);
 	
 	public List <Query> getAllQueries(int transId);
 	public String saveReply(Query query);

@@ -24,10 +24,12 @@ public interface TransporterServices {
 	
 	public String saveVehicle(Vehicle vehicle, MultipartFile vInsurance, MultipartFile vFitness, int transId);
 	public List <Vehicle> getAllVehicles (int transId);
+	public String deleteVehicle(String regNo);
 	
 	public String saveDeal(Deal deal, String vehicles, int transId);
 	public List <Deal> getAllDeals (int transId);
 	public Deal fetchDeal(int dealId);
+	public String deleteDeal(int dealId);
 	
 	public List <Query> getAllQueries(int transId);
 	public String saveReply(Query query);
