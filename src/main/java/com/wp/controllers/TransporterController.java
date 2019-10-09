@@ -44,6 +44,10 @@ public class TransporterController {
 	public Transporter transporter;
 	public List <String> cities;
 	
+	public List <Integer> dealIds;
+	public List <String> sourceList;
+	public List <String> destinationList;
+	
 	
 // Routes
 	
@@ -70,24 +74,8 @@ public class TransporterController {
 	
 	@RequestMapping("/transporter/transVehicles")
 	public ModelAndView transVehicles(@SessionAttribute("id") int loginId)
-	{
-		
-		//System.out.println("loginId: "+loginId);
-		
+	{		
 		int transId = transporterServices.getTransporterId(loginId);
-		
-		//System.out.println("tranId:"+transId);
-
-		
-		 //Transporter transporter=transporterServices.getTransporter(transId);
-		 // System.out.println(transporter);
-		  
-		/*
-		 * List <Vehicle> vehicles = transporter.getVehicles();
-		 * 
-		 * System.out.println(vehicles);
-		 */
-		 
 		  
 		vehicles  = transporterServices.getAllVehicles(transId);
 		
@@ -104,9 +92,21 @@ public class TransporterController {
 		  
 		deals  = transporterServices.getAllDeals(transId);
 		
+		for(Deal d : deals)
+		{
+			dealIds.add(d.getDealId());
+			sourceList.add(d.getSourceCity());
+			destinationList.add(d.getDestinationCity());
+			
+		}
+		
+		
 		ModelAndView modelAndView = new ModelAndView("transporter/TransDeals");
 		
 		modelAndView.addObject("deals",deals);
+		modelAndView.addObject("dealIds",dealIds);
+		modelAndView.addObject("sourceList",sourceList);
+		modelAndView.addObject("destinationList",destinationList);
 		
 		return modelAndView;
 	}

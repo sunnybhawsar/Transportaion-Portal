@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	  
-	  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
 	<%@page isELIgnored="false" %>
+	
+	<%@taglib uri="http://www.springframework.org/tags/form"  prefix="frm" %> 
+	  
      
   <%
   if(request.getSession().getAttribute("id")==null)
@@ -107,7 +110,7 @@ pre
 
 .bodyDiv h3
 {
-	color:green;'
+	color:green;
 }
 
 .contents
@@ -138,6 +141,11 @@ pre
 	margin-left:5%;
 	margin-right:3%;
 }
+
+.col-lg-2
+{
+	margin-left:3%;
+}
 </style>
 
 </head>
@@ -154,6 +162,67 @@ pre
 		<h3 align="center">Explore Deals</h3>
 		<br/>
 		
+		
+		<div class="container">
+		
+			<form action="applyFilter" method="post" >
+			<div class="row">
+			
+				<div class="col-lg-2">
+				
+					<span style="color:red;" align="center">Apply Filters</span>
+					
+				</div>
+				
+				<div class="col-lg-2">
+				
+					<span>Deal Id: </span>
+					
+					<select name="dealId">
+						 <c:forEach var="dealID" items="${dealIds}">
+						 	<option>${dealID}</option>
+						</c:forEach>
+					</select>
+					
+				</div>
+				
+				<div class="col-lg-2">
+				
+					<span>From: </span>
+					
+					<select name="source">
+						 <c:forEach var="source" items="${sourceList}">
+						 	<option>${source}</option>
+						</c:forEach>
+					</select>
+					
+				</div>
+				
+				<div class="col-lg-2">
+				
+					<span>To: </span>
+					
+					<select name="destination">
+						 <c:forEach var="destination" items="${destinationList}">
+						 	<option>${destination}</option>
+						</c:forEach>
+					</select>
+				
+				</div>
+				
+				
+				<div class="col-lg-2">
+					<input type="submit" value="Search" class="btn btn-dark"/>
+				</div>				
+				
+				
+			</div>
+			
+			</form>
+		
+		</div>
+		
+		<br/>
 		
       <p align="right" style="color:#ED5C2C; margin-right:15%;">${status}</p>
          

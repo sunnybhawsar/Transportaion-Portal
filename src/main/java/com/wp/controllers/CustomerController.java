@@ -43,6 +43,9 @@ public class CustomerController {
 	public Customer customer;
 	public List <String> cities;
 	
+	public List <String> dealIds = new ArrayList<String>();
+	public List <String> sourceList = new ArrayList<String>();
+	public List <String> destinationList = new ArrayList<String>();
 	
 	// Routes
 	
@@ -74,8 +77,27 @@ public class CustomerController {
 	{
 		deals = customerServices.getAllDeals();
 		
+		dealIds.add("Select");
+		sourceList.add("Select");
+		destinationList.add("Select");
+		
+		for(Deal d : deals)
+		{
+			dealIds.add(String.valueOf(d.getDealId()));
+			sourceList.add(d.getSourceCity());
+			destinationList.add(d.getDestinationCity());
+			
+		}
+		
+		
+		
 		ModelAndView modelAndView = new ModelAndView("customer/CustExploreDeals");
+		
 		modelAndView.addObject("deals",deals);
+		modelAndView.addObject("dealIds",dealIds);
+		modelAndView.addObject("sourceList",sourceList);
+		modelAndView.addObject("destinationList",destinationList);
+		
 		return modelAndView;
 	}
 
@@ -229,7 +251,10 @@ public class CustomerController {
 		
 		modelAndView.addObject("status",status);
 		modelAndView.addObject("deals",deals);
-		
+		modelAndView.addObject("dealIds",dealIds);
+		modelAndView.addObject("sourceList",sourceList);
+		modelAndView.addObject("destinationList",destinationList);
+			
 		return modelAndView;
 	}
 	
@@ -316,6 +341,84 @@ public class CustomerController {
 		
 		modelAndView.addObject("queries", queries);
 		modelAndView.addObject("status",status);
+		
+		return modelAndView;
+	}
+	
+	
+	// Apply filter
+	
+	@RequestMapping("customer/applyFilter")
+	public ModelAndView applyFiler(
+			@RequestParam("dealId") String dealId,
+			@RequestParam("source") String source,
+			@RequestParam("destination") String destination
+			)
+	{
+		
+		this.deals = customerServices.getAllDeals();
+		
+		List <Deal> deals = new ArrayList<Deal>();
+		
+		if(dealId.equals("Select") && source.equals("Select") && destination.equals("Select"))
+		{
+			deals = this.deals;
+		}
+		
+		else if(!dealId.equals("Select"))
+		{
+			for(Deal d : this.deals)
+			{
+				
+				if(String.valueOf(d.getDealId()).equals(dealId)) 
+				  { 
+					  deals.add(d); 
+				  }
+				 
+			}
+		}
+		
+		else if(!source.equals("Select"))
+		{
+			for(Deal d : this.deals)
+			{
+				
+				if(d.getSourceCity().equals(source)) 
+				  { 
+					  deals.add(d); 
+				  }
+				 
+			}
+		}
+		
+		else if(!destination.equals("Select"))
+		{
+			for(Deal d : this.deals)
+			{
+				
+				if(d.getDestinationCity().equals(destination)) 
+				  { 
+					  deals.add(d); 
+				  }
+				 
+			}
+		}
+		
+		else
+		{
+			deals = this.deals;
+		}
+		
+		
+		
+		
+		
+		ModelAndView modelAndView = new ModelAndView("customer/CustExploreDeals");
+		
+		modelAndView.addObject("deals",deals);
+		modelAndView.addObject("dealIds",dealIds);
+		modelAndView.addObject("sourceList",sourceList);
+		modelAndView.addObject("destinationList",destinationList);
 		
 		return modelAndView;
 	}
