@@ -83,7 +83,7 @@ color:red;
 				
 				<input type="password" id="password" name="password" class="form-control txtbox" placeholder="Password" />  
 				
-				<a href="" class="forgot"><b>Forgot Password?</b></a>
+				<!-- <a href="" class="forgot"><b>Forgot Password?</b></a> -->
 				
 				
 				<br/><br/>

@@ -45,7 +45,7 @@
 .files
 {
 	font-size:17px;
-	color:grey;
+	color:black;
 	margin-left:12%;
 }
 
@@ -111,12 +111,13 @@
 				
 				<br/>
 			
-				<p class="files">Your Pan Card (JPG)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="file" id="picture" name="picture" class="fileInput" /> </p><br/> 
+				<p class="files">Your Pan Card (JPG)</p>
+				<input type="file" id="picture" name="picture" class="fileInput" accept="image/*"/><br/> 
 				
+				<br/><br/>
 				
-				<p class="files">Your Id Proof (PDF) &nbsp;
-				<input type="file" id="identityProof" name="identityProof" class="" /> </p><br/> 
+				<p class="files">Your Id Proof (PDF) &nbsp; </p>
+				<input type="file" id="identityProof" name="identityProof" accept="application/pdf" /> <br/> 
 				
 				
 				<br/><br/>

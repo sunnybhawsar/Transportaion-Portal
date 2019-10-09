@@ -83,7 +83,7 @@
 				
 				<input type="password" id="password" name="password" class="form-control txtbox" placeholder="Password" required="required"/>  
 				
-				<a href="" class="forgot"><b>Forgot Password?</b></a>
+				<!-- <a href="" class="forgot"><b>Forgot Password?</b></a> -->
 				
 				
 				<br/><br/>

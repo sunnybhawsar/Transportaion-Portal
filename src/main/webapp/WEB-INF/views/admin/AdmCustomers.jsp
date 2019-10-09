@@ -41,7 +41,7 @@ pre
 
 .first
 {
-	margin-left:9%;
+	margin-left:28%;
 }
 
 

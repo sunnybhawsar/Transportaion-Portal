@@ -105,7 +105,7 @@
 			<br/>
 
 				<p class="files">Upload Aadhaar Card (JPG)
-				<input type="file" id="picture" name="picture" class="fileInput" /> </p><br/> 
+				<input type="file" id="picture" name="picture" class="fileInput" accept="image/*" /> </p><br/> 
 				
 				
 				
