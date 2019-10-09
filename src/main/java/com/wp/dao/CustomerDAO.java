@@ -23,4 +23,6 @@ public interface CustomerDAO {
 	
 	public List <Query> getAllQueries (int custId);
 	
+	public String deleteQuery(int queryId);
+	
 }

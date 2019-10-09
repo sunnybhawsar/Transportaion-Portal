@@ -258,5 +258,16 @@ public class TransporterServicesImpl implements TransporterServices {
 	}
 
 
+// Delete Query
+	
+	@Override
+	public String deleteQuery(int queryId) {
+		
+		String res = transporterDAO.deleteQuery(queryId);
+		
+		return res;
+	}
+
+
 
 }

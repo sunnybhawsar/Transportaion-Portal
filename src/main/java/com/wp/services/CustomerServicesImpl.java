@@ -102,7 +102,7 @@ public class CustomerServicesImpl implements CustomerServices {
 		
 		customer.setAadhaar(fileName);
 		
-		String response = customerDAO.addCustomer(customer);
+		String response = customerDAO.updateCustomer(customer);
 		
 		return response;
 	}
@@ -176,6 +176,16 @@ public class CustomerServicesImpl implements CustomerServices {
 		String res = transporterServices.getRating(transporter);
 
 		return res;
+	}
+
+
+// Delete Query
+	
+	@Override
+	public String deleteQuery(int queryId) {
+		
+		String response = customerDAO.deleteQuery(queryId);
+		return response;
 	}
 
 }

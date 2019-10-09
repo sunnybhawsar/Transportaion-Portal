@@ -1,7 +1,12 @@
 package com.wp.controllers;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,6 +54,8 @@ public class CustomerController {
 		int customerId = otherServices.getLoginDetails(loginId).getCustomer().getCustomerId();
 		
 		customer = customerServices.getCustomer(customerId);
+		
+	//	System.out.println("control ------ "+customer.getCustomerId());
 		
 		cities = new ArrayList<String>();
 		cities.add("Indore");
@@ -235,9 +242,10 @@ public class CustomerController {
 	public ModelAndView updateProfile(@ModelAttribute("customer") Customer customer, @RequestParam("picture") MultipartFile file)
 	{
 		customer.setCustomerId(this.customer.getCustomerId());
+		customer.setLogin(new Login(this.customer.getLogin().getLoginId()));
 		
-	//	String response = customerServices.updateCustomer(customer, file);
-		String response = "Success";
+		String response = customerServices.updateCustomer(customer, file);
+	//	String response = "Success";
 		
 		String status="";
 		
@@ -259,7 +267,60 @@ public class CustomerController {
 		return modelAndView;
 	}
 	
+	
+	// Open File
+	
+	@RequestMapping("/customer/viewFile")
+	public void viewFile(@RequestParam("fileName") String fileName, HttpServletResponse response) throws IOException
+	{
+		
+		String directory = "/home/yuvi/Documents/workspace-spring-tool-suite-4-4.4.0.RELEASE/Transportation/assets/";
+		
+		String folder="customer/images/";
+	
+		FileInputStream fileInputStream = new FileInputStream(directory+folder+fileName);
+		
+		byte bytes[] = new byte[fileInputStream.available()];
+		
+		fileInputStream.read(bytes);
+		
+		ServletOutputStream out = response.getOutputStream();
+		
+		out.write(bytes);
+		
+		fileInputStream.close();
+	}
 
+	
+	// Delete Query
+	
+	@RequestMapping("customer/deleteQuery")
+	public ModelAndView deleteQuery(@RequestParam("queryId") int queryId, @SessionAttribute("id") int loginId)
+	{
+		String response = customerServices.deleteQuery(queryId);
+		
+		String status="";
+		if(response.equals("Success"))
+		{
+			status = "Query Deleted!";
+		}
+		else
+		{
+			status = "Try again later!";
+		}
+		
+
+		int customerId = otherServices.getLoginDetails(loginId).getCustomer().getCustomerId();
+		
+		queries = customerServices.getAllQueries(customerId);
+		
+		ModelAndView modelAndView = new ModelAndView("customer/CustQueries");
+		
+		modelAndView.addObject("queries", queries);
+		modelAndView.addObject("status",status);
+		
+		return modelAndView;
+	}
 
 }
   

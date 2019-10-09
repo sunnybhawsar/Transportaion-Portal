@@ -182,7 +182,7 @@ table
             	
             	&nbsp;
             	
-            	<a href="" style="float:left; margin-left:20px;">
+            	<a href="deleteVehicle?regNo=${vehicle.registrationNumber}" style="float:left; margin-left:20px;">
             	<button type="button" class="btn btn-danger" >Unregister Vehicle</button>
             	</a>
             	

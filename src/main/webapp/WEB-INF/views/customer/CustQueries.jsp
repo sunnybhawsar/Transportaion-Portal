@@ -131,6 +131,7 @@ pre
 		<h3 align="center">Queries List</h3>
 		<br/>
 		
+		<p style="float:right; margin-right:5%; color:#ed5c2c;">${status}</p>
 		
 		<div class="table-responsive-md">
           <table class="table">
@@ -155,8 +156,10 @@ pre
               <td><p>${query.response}</p></td>
               
               <td>
-             
+             	
+             <a href="deleteQuery?queryId=${query.queryId}">
               <button type="button" class="btn btn-danger"> Delete </button>
+             </a>
               </td>
           </tr>
           

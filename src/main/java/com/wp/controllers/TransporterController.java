@@ -399,5 +399,36 @@ public class TransporterController {
 				
 				return modelAndView;
 			}
+			
+			
+	// Delete Query
+			
+			@RequestMapping("transporter/deleteQuery")
+			public ModelAndView deleteQuery(@RequestParam("queryId") int queryId, @SessionAttribute("id") int loginId)
+			{
+				String res = transporterServices.deleteQuery(queryId);
+				
+				String status="";
+				if(res.equals("Success"))
+				{
+					status = "Query Deleted!";
+				}
+				else
+				{
+					status = "Try again later!";
+				}
+				
+
+				int transporterId = otherServices.getLoginDetails(loginId).getTransporter().getTransporterId();
+				
+				queries = transporterServices.getAllQueries(transporterId);
+				
+				ModelAndView modelAndView = new ModelAndView("transporter/TransQueries");
+				
+				modelAndView.addObject("queries", queries);
+				modelAndView.addObject("status",status);
+				
+				return modelAndView;
+			}	
 		
 }

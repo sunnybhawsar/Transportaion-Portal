@@ -290,6 +290,10 @@ pre
          	<div class="actionsDiv">
          	
          	</div>
+         	
+         	<a href="mailto:${deal.transporter.email}" style="margin-left:80%; font-size:18px;">
+         	Send Email
+         	</a>
               
          </div>
          

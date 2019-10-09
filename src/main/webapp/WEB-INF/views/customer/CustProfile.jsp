@@ -155,28 +155,28 @@ table
 				<tr>
 					<td class="lbl"><p >Name : </p><td>
 					<td>
-					<frm:input type="text" path="name"  class="txtbox" />
+					<frm:input path="name"  class="txtbox" />
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="lbl"><p > Email :  </p><td>
 					<td>
-					<frm:input type="text" path="email" class="txtbox" />
+					<frm:input  path="email" class="txtbox" />
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="lbl"><p > Mobile : </p><td>
 					<td>
-					<frm:input type="number" path="mobile" class="txtbox" />
+					<frm:input  path="mobile" class="txtbox" />
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="lbl"><p > City : </p><td>
 					<td>
-					<frm:select type="text" path="city" items="${cities}" style="height:28px;" />
+					<frm:select  path="city" items="${cities}" style="height:28px;" />
 					</td>
 				</tr>
 				
@@ -185,11 +185,11 @@ table
 					<td>
 					<br/>
 					<p>
-					<a href="" target="_blank">
-						${customer.aadhaar}
+					<a href="viewFile?fileName=${customer.aadhaar}" target="_blank">
+						View Card
 					</a> <br/>
 					
-					Change <input type="file" name="picture" style="margin-top:10px;" />
+					CHANGE <input type="file" name="picture" style="margin-top:10px;" />
 					
 					</p></td>
 				</tr>

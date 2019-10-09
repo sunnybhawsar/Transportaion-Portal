@@ -26,5 +26,7 @@ public interface CustomerServices {
 	public String saveQuery(Query query,int transId, String transEmail, int custId, String custEmail);
 	
 	public String rateTransporter(int rating, int transId);
+	
+	public String deleteQuery(int queryId);
 
 }

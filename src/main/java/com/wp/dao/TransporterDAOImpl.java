@@ -261,5 +261,24 @@ public class TransporterDAOImpl implements TransporterDAO {
 	}
 
 	
+// Delete Query
+	
+	@Override
+	public String deleteQuery(int queryId) {
+		
+		session = sessionFactory.openSession();
+		
+		Query query = session.get(Query.class, queryId);
+		
+		transaction = session.beginTransaction();
+		
+		session.delete(query);
+		
+		transaction.commit();
+		
+		return "Success";
+	}
+
+	
 
 }
