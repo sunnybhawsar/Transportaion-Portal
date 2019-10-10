@@ -162,21 +162,21 @@ table
 				<tr>
 					<td class="lbl"><p >Name : </p><td>
 					<td>
-					<frm:input path="name"  class="txtbox" />
+					<frm:input path="name"  class="txtbox" required="required"/>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="lbl"><p > Email :  </p><td>
 					<td>
-					<frm:input  path="email" class="txtbox" />
+					<frm:input type="email"  path="email" class="txtbox" required="required"/>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="lbl"><p > Mobile : </p><td>
 					<td>
-					<frm:input  path="mobile" class="txtbox" />
+					<frm:input type="number"  path="mobile" class="txtbox" required="required" min="6000000000" max="9999999999"/>
 					</td>
 				</tr>
 				
@@ -203,7 +203,7 @@ table
 						View Pancard
 					</a> <br/>
 					
-					CHANGE <input type="file" name="picture" style="margin-top:10px;" />
+					CHANGE <input type="file" accept="image/*" name="picture" style="margin-top:10px;" />
 					
 					</p></td>
 				</tr>
@@ -217,7 +217,7 @@ table
 						View Id Proof
 					</a> <br/>
 					
-					CHANGE <input type="file" name="identityProof" style="margin-top:10px;" />
+					CHANGE <input type="file" accept="application/pdf" name="identityProof" style="margin-top:10px;" />
 					
 					</p></td>
 				</tr>

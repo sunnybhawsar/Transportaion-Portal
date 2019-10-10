@@ -155,21 +155,21 @@ table
 				<tr>
 					<td class="lbl"><p >Name : </p><td>
 					<td>
-					<frm:input path="name"  class="txtbox" />
+					<frm:input path="name"  class="txtbox" required="required"/>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="lbl"><p > Email :  </p><td>
 					<td>
-					<frm:input  path="email" class="txtbox" />
+					<frm:input type="email" path="email" class="txtbox" required="required"/>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="lbl"><p > Mobile : </p><td>
 					<td>
-					<frm:input  path="mobile" class="txtbox" />
+					<frm:input type="number"  path="mobile" class="txtbox" required="required" min="6000000000" max="9999999999"/>
 					</td>
 				</tr>
 				

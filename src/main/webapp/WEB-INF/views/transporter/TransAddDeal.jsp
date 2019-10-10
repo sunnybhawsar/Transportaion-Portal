@@ -208,14 +208,14 @@ pre
 								
 								
 				<p class="headings">Return Date</p>
-				<input type="date" id="returnDate" name="returnDate" class="form-control" required="required"/> <br/>
+				<input type="date" id="returnDate" name="returnDate" class="form-control" required="required" min="2019-10-10" /> <br/>
 				
 				<p class="headings">Reach Date</p>
-				<input type="date" id="reachDate" name="reachDate" class="form-control" required="required"/> <br/>
+				<input type="date" id="reachDate" name="reachDate" class="form-control" required="required" min="2019-10-11"/> <br/>
 				
 				
 				<p class="headings">Price Quotes (in Rs/kg)</p>
-				<input type="number" id="pricing" name="pricing" class="form-control txtbox"  required="required"/> <br/> 
+				<input type="number" id="pricing" name="pricing" class="form-control txtbox"  required="required" min="1"/> <br/> 
 
 
 				<p class="headings">Select Vehicle</p>			

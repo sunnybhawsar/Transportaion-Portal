@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
+	<%@page isELIgnored="false" %>
+	
+	<%@taglib uri="http://www.springframework.org/tags/form"  prefix="frm" %> 
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +64,16 @@
 	color:#478939;
 }
 
+.headings
+{
+	font-size:12px;
+	float:left;
+	margin-left:12px;
+	margin-top: 1px;
+	margin-bottom:0px;
+	color:black;
+}
+
 </style>
 
 </head>
@@ -79,17 +96,19 @@
 				
 				<input type="email" id="email" name="email" class="form-control txtbox" placeholder="Enter email" required="required"/> <br/> 
 				
-				<input type="number" id="mobile" name="mobile" class="form-control txtbox" placeholder="Enter mobile number" required="required"/> <br/> 
+				<input type="number" id="mobile" name="mobile" class="form-control txtbox" placeholder="Enter mobile number" required="required" min="6000000000" max="9999999999"/> <br/> 
  
 				
 				<p class="pAddress">Enter Address</p>
 				<textarea id="address" name="address" class="form-control txtarea" placeholder="Enter address" > 
 				</textarea> <br/> 
 								
-				
+				<p class="pAddress">City</p>
 				<select class="form-control" name="city">
-					<option>City</option>
 					<option> Indore </option>
+					<option> Ujjain </option>
+					<option> Dewas </option>
+					<option> Ratlam </option>
 				</select>  <br/>
 			
 				
@@ -102,8 +121,7 @@
 				
 				<input type="password" id="password" name="password" class="form-control txtbox" placeholder="Enter password" required="required"/> <br/> 
 				
-				<input type="password" id="confirmPassword" name="confirmPassword" class="form-control txtbox" placeholder="Confirm password" required="required"/> <br/>
-			
+				
 			<br>
 			<p class="lbl">
 			 Documents
@@ -112,12 +130,12 @@
 				<br/>
 			
 				<p class="files">Your Pan Card (JPG)</p>
-				<input type="file" id="picture" name="picture" class="fileInput" accept="image/*"/><br/> 
+				<input type="file" id="picture" name="picture" class="fileInput" accept="image/*" required="required" /><br/> 
 				
 				<br/><br/>
 				
 				<p class="files">Your Id Proof (PDF) &nbsp; </p>
-				<input type="file" id="identityProof" name="identityProof" accept="application/pdf" /> <br/> 
+				<input type="file" id="identityProof" name="identityProof" accept="application/pdf" required="required" /> <br/> 
 				
 				
 				<br/><br/>

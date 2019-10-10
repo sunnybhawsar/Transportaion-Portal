@@ -8,11 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+//import javax.validation.constraints.Pattern;
 
 @Entity
 public class Vehicle {
 	
 	@Id
+	//@Pattern(regexp="[a-zA-Z]{2}[0-9]{2}[a-zA-Z]{2}[0-9]{4}", message="*Should be valid! (Eg: MP09AL0000)")
 	private String registrationNumber;
 	private String vehicleType;
 	private String brand;

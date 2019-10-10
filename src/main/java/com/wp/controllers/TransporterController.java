@@ -7,9 +7,11 @@ import java.util.List;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+//import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+//import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wp.models.Customer;
 import com.wp.models.Deal;
 import com.wp.models.Login;
 import com.wp.models.Query;
@@ -43,10 +44,6 @@ public class TransporterController {
 	
 	public Transporter transporter;
 	public List <String> cities;
-	
-	public List <Integer> dealIds;
-	public List <String> sourceList;
-	public List <String> destinationList;
 	
 	
 // Routes
@@ -92,22 +89,10 @@ public class TransporterController {
 		  
 		deals  = transporterServices.getAllDeals(transId);
 		
-		for(Deal d : deals)
-		{
-			dealIds.add(d.getDealId());
-			sourceList.add(d.getSourceCity());
-			destinationList.add(d.getDestinationCity());
-			
-		}
-		
 		
 		ModelAndView modelAndView = new ModelAndView("transporter/TransDeals");
 		
-		modelAndView.addObject("deals",deals);
-		modelAndView.addObject("dealIds",dealIds);
-		modelAndView.addObject("sourceList",sourceList);
-		modelAndView.addObject("destinationList",destinationList);
-		
+		modelAndView.addObject("deals",deals);		
 		return modelAndView;
 	}
 	
@@ -129,13 +114,13 @@ public class TransporterController {
 	public ModelAndView addVehicle(@ModelAttribute("vehicle") Vehicle vehicle)
 	{
 		List <String> vehicleTypes = new ArrayList<String>();
-		vehicleTypes.add("Select vehicle type");
+		
 		vehicleTypes.add("Truck");
 		vehicleTypes.add("Trolley");
 		vehicleTypes.add("Pickup");
 		
 		List <String> brands = new ArrayList<String>();
-		brands.add("Brand");
+		
 		brands.add("TATA");
 		brands.add("Mahindra");
 		brands.add("Chevrolet");
@@ -289,36 +274,45 @@ public class TransporterController {
 	
 	@RequestMapping("transporter/saveVehicle")
 	public ModelAndView saveVehicle(
-			@ModelAttribute("vehicle") Vehicle vehicle,
+			/* @Valid */ @ModelAttribute("vehicle") Vehicle vehicle,
 			@RequestParam("vInsurance") MultipartFile vInsurance,
 			@RequestParam("vFitness") MultipartFile vFitness,
 			@SessionAttribute("id") int loginId
+			//,BindingResult bindingResult
 			)
 	{
+	
+		/*
+		 * if(bindingResult.hasErrors()) { ModelAndView modelAndView = new
+		 * ModelAndView("transporter/TransAddVehicle"); return modelAndView; }
+		 * 
+		 * else {
+		 */
 		
-		int transId = transporterServices.getTransporterId(loginId);
-		
-		String response = transporterServices.saveVehicle(vehicle, vInsurance, vFitness, transId);
-		
-		String status;
-		
-		if(response.equals("Success"))
-		{
-			status = "Vehicle added successfully!";
+			int transId = transporterServices.getTransporterId(loginId);
+			
+			String response = transporterServices.saveVehicle(vehicle, vInsurance, vFitness, transId);
+			
+			String status;
+			
+			if(response.equals("Success"))
+			{
+				status = "Vehicle added successfully!";
+			}
+			else
+			{
+				status = "Something went wrong, Try again later!";
+			}
+			
+			//System.out.println("savevehicleController: Status - "+response);
+			
+			ModelAndView modelAndView = new ModelAndView("transporter/TransAddVehicle");
+			
+			modelAndView.addObject("status",status);
+			
+			return modelAndView;
 		}
-		else
-		{
-			status = "Something went wrong, Try again later!";
-		}
-		
-		//System.out.println("savevehicleController: Status - "+response);
-		
-		ModelAndView modelAndView = new ModelAndView("transporter/TransAddVehicle");
-		
-		modelAndView.addObject("status",status);
-		
-		return modelAndView;
-	}
+	//}
 	
 	
 // fetch a vehicle details

@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
+	<%@page isELIgnored="false" %>
+	
+	<%@taglib uri="http://www.springframework.org/tags/form"  prefix="frm" %> 
+	    
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +47,6 @@
 	margin-top: 4px;
 	margin-bottom:0px;
 	color:grey;
-	text-decoration:none;
 }
 
 .lbl
@@ -73,18 +79,20 @@
 			 Basic Details
 			</p>
 
-			<form action="addCustomer" method="post" class="registerForm form-group" enctype="multipart/form-data">
+			<frm:form action="addCustomer" method="post" class="registerForm form-group" enctype="multipart/form-data">
 
 				<input type="text" id="name" name="name" class="form-control txtbox" placeholder="Enter name" required="required"/> <br/> 
 				
 				<input type="email" id="email" name="email" class="form-control txtbox" placeholder="Enter email" required="required"/> <br/> 
 				
-				<input type="number" id="mobile" name="mobile" class="form-control txtbox" placeholder="Enter mobile number" required="required"/> <br/> 
+				<input type="number" id="mobile" name="mobile" class="form-control txtbox" placeholder="Enter mobile number" required="required"  min="6000000000" max="9999999999"/> <br/> 
  
-				
+				<p class="pAddress">City</p>
 				<select class="form-control" name="city">
-					<option> City </option>
 					<option> Indore </option>
+					<option> Ujjain </option>
+					<option> Dewas </option>
+					<option> Ratlam </option>
 				</select>  <br/>		
 				
 				<p class="lbl">
@@ -95,17 +103,15 @@
 				
 				<input type="password" id="password" name="password" class="form-control txtbox" placeholder="Enter password" required="required"/> <br/> 
 				
-				<input type="password" id="confirmPassword" name="confirmPassword" class="form-control txtbox" placeholder="Confirm password" required="required"/> <br/>
-			
 				
-				<p class="lbl">
+			<p class="lbl">
 			 Customer Identity
 			</p>
 
 			<br/>
 
 				<p class="files">Upload Aadhaar Card (JPG)
-				<input type="file" id="picture" name="picture" class="fileInput" accept="image/*" /> </p><br/> 
+				<input type="file" id="picture" name="picture" class="fileInput" accept="image/*" required="required"/> </p><br/> 
 				
 				
 				
@@ -115,7 +121,7 @@
 				
 				
 				
-			</form>
+			</frm:form>
 		</div>
 
 	</div>

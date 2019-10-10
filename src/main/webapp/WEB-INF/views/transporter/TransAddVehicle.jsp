@@ -155,6 +155,22 @@ pre
 	color:#478939;
 }
 
+.headings
+{
+	font-size:12px;
+	float:left;
+	margin-left:12px;
+	margin-top: 1px;
+	margin-bottom:0px;
+	color:black;
+}
+
+.validation
+{
+	color:red;
+	font-size:12px;
+}
+
 </style>
 
 </head>
@@ -187,17 +203,20 @@ pre
 
 			<frm:form action="saveVehicle" modelAttribute="vehicle"  method="post" class="registerForm form-group" enctype="multipart/form-data" >
 			
-				<input type="text" id="registrationNumber" name="registrationNumber" class="form-control txtbox" placeholder="Enter Registration Number" required="required"/> <br/> 
+				<frm:input type="text" id="registrationNumber" path="registrationNumber" class="form-control txtbox" placeholder="Enter Registration Number" required="required" maxlength="10"/> <br/> 
 				
+				<%-- <label class="validation"><i><frm:errors path="registrationNumber"/></i></label>
+				 --%>
+				
+				<p class="headings">Vehicle Type</p>
 				<frm:select class="form-control" path="vehicleType" items="${vehicleTypes}">
-					
 				</frm:select>  <br/>
 				
+				<p class="headings">Brand</p>
 				<frm:select class="form-control" path="brand" items="${brands}" >
-					
 				</frm:select>  <br/>
 				
-				<input type="number" id="capacity" name="capacity" class="form-control txtbox" placeholder="Enter Capacity (in Kg)" required="required"/> <br/> 
+				<input type="number" id="capacity" name="capacity" class="form-control txtbox" placeholder="Enter Capacity (in Kg)" required="required" min="50" /> <br/> 
 
 				
 			<br>
@@ -208,11 +227,11 @@ pre
 				<br/>
 			
 				<p class="files">1. Vehicle Insurance Paper (JPG/JPEG)  </p>
-				<input type="file" id="vInsurance" name="vInsurance" class="fileInput" /><br/> <br/>
+				<input type="file" id="vInsurance" name="vInsurance" class="fileInput" accept="image/*" required="required" /><br/> <br/>
 				
 				
 				<p class="files">2. Fitness Paper (JPG/JPEG) &nbsp;</p>
-				<input type="file" id="vFitness" name="vFitness" class="" /> <br/> 
+				<input type="file" id="vFitness" name="vFitness" class="" accept="image/*" required="required" /> <br/> 
 				
 				
 				<br/><br/>
