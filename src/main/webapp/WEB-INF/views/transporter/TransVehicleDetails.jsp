@@ -183,11 +183,11 @@ table
 				
 			</table>
             	
-              <div style="margin-left:37%;">
+              <!-- <div style="margin-left:37%;">
               	<a href="" style="float:left;">
             	<button type="button" class="btn btn-warning" >Update Papers</button>
             	</a>
-            	
+            	 -->
             	&nbsp;
             	
             	<a href="deleteVehicle?regNo=${vehicle.registrationNumber}" style="float:left; margin-left:20px;">

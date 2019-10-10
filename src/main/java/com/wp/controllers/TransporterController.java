@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 //import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 //import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,6 +37,9 @@ public class TransporterController {
 	
 	@Autowired
 	private TransporterServices transporterServices;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	public List <Vehicle> vehicles;
 	
@@ -361,25 +366,83 @@ public class TransporterController {
 		String response = transporterServices.saveDeal(deal, selectedVehicle, transId);
 		
 		String status;
+		String action = "";
+		String caption = "";
 		
 		if(response.equals("Success"))
 		{
 			status = "Deal posted successfully!";
+			action = "Deal posted successfully!";
+			
+			String to = "customer.in.00@gmail.com";
+			
+			String subject = "New Deal Posted - Transportation";
+			String message = "New Deal posted on our portal by Transporter : "+transId+" \nCheck out now! \n\nContact us for more information.";
+			
+			int statusCode = sendEmail(to, subject, message);
+			
+			
+			
+			  if(statusCode == 200) 
+			  {
+				  caption = "Email has been sent to all customers!"; 
+			  }
+			  else
+			  {
+				  caption = ""; 
+			  }
+			 
+			
 		}
 		else
 		{
 			status = "Something went wrong, Try again later!";
+			action = "Something went wrong, Try again later!";
 		}
 		
-		//System.out.println("savevehicleController: Status - "+response);
 		
-		ModelAndView modelAndView = new ModelAndView("transporter/TransAddDeal");
+		ModelAndView modelAndView = new ModelAndView("transporter/TransStatus");
 		
 		modelAndView.addObject("status",status);
+		modelAndView.addObject("action",action);
+		modelAndView.addObject("caption",caption);
+		modelAndView.addObject("nextView","transDeals");
+		
 		
 		return modelAndView;
 	}
 	
+	
+			// Save Deal         	####### Automation########
+	/*
+	 * @RequestMapping("transporter/saveDeal") public ModelAndView saveDeal(
+	 * 
+	 * @ModelAttribute("deal") Deal deal,
+	 * 
+	 * @RequestParam("selectedVehicle") String selectedVehicle,
+	 * 
+	 * @SessionAttribute("id") int loginId ) {
+	 * 
+	 * 
+	 * int transId = transporterServices.getTransporterId(loginId);
+	 * 
+	 * String response = transporterServices.saveDeal(deal, selectedVehicle,
+	 * transId);
+	 * 
+	 * String status;
+	 * 
+	 * if(response.equals("Success")) { status = "Deal posted successfully!"; } else
+	 * { status = "Something went wrong, Try again later!"; }
+	 * 
+	 * //System.out.println("savevehicleController: Status - "+response);
+	 * 
+	 * ModelAndView modelAndView = new ModelAndView("transporter/TransAddDeal");
+	 * 
+	 * modelAndView.addObject("status",status);
+	 * 
+	 * return modelAndView; }
+	 */
+
 	
 // fetch a deal details
 	
@@ -547,6 +610,29 @@ public class TransporterController {
 				return modelAndView;
 			}	
 			
+		
+			// Send Email
+			
+			public int sendEmail(String to, String subject, String message)
+			{
+				SimpleMailMessage mailMessage = new SimpleMailMessage();
+				
+				mailMessage.setTo(to);
+				
+				mailMessage.setSubject(subject);
+				
+				String header = "Hello,\n\n";
+				String footer = "\n\n\nThanks & Regards \nAdmin - Transportation Portal \nIndore, India (452010) \n\nDisclaimer: Feel free to reply!";
+				String text = header+message+footer;
+				
+				mailMessage.setText(text);
+				
+				mailSender.send(mailMessage);
+				
+				return 200;
+			}
+			
+			
 			
 		// Delete Vehicle
 			
@@ -604,5 +690,7 @@ public class TransporterController {
 							
 							return modelAndView;
 						}	
-		
+	
+						
+						
 }

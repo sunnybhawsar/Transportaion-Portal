@@ -199,15 +199,15 @@ table
 			</table>
             	
             
-            	
+            <!-- 	
               <div style="margin-left:37%; margin-top:25px; clear:both; float:left;">
               	<a href="" style="float:left;">
             	<button type="button" class="btn btn-warning" >Edit Details</button>
-            	</a>
+            	</a> -->
             	
             	&nbsp;
             	
-            	<a href="deleteDeal?dealId=${deal.dealId}" style="float:left; margin-left:20px;">
+            	<a href="deleteDeal?dealId=${deal.dealId}" style="margin-left:37%; margin-top:25px; clear:both; float:left;">
             	<button type="button" class="btn btn-danger" >Delete Deal</button>
             	</a>
             	
